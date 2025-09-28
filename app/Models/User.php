@@ -56,4 +56,12 @@ class User extends Authenticatable // implements MustVerifyEmail
     {
         return $this->hasMany(ServiceRequest::class);
     }
+
+    /**
+     * Get the service comments for the user.
+     */
+    public function serviceComments(): HasMany
+    {
+        return $this->hasMany(ServiceComment::class);
+    }
 }

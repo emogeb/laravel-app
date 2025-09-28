@@ -23,6 +23,8 @@ class ProfileController extends Controller
     {
         return Inertia::render('Profile/Edit', [
             'user' => $request->user(),
+            'mustVerifyEmail' => $request->user() instanceof \Illuminate\Contracts\Auth\MustVerifyEmail,
+            'services' => \App\Models\Service::where('is_active', true)->orderBy('order')->get(),
         ]);
     }
 

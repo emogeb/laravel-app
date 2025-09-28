@@ -13,6 +13,7 @@
             <th class="py-3 px-4 text-left text-blue-700 dark:text-blue-400 font-semibold">Talep Tarihi</th>
             <th class="py-3 px-4 text-left text-blue-700 dark:text-blue-400 font-semibold">Durum</th>
             <th class="py-3 px-4 text-left text-blue-700 dark:text-blue-400 font-semibold">Açıklama</th>
+            <th class="py-3 px-4 text-left text-blue-700 dark:text-blue-400 font-semibold">Ürün</th>
           </tr>
         </thead>
         <tbody>
@@ -22,6 +23,10 @@
             <td class="py-2 px-4 text-gray-900 dark:text-white">{{ new Date(serviceRequest.created_at).toLocaleString('tr-TR') }}</td>
             <td class="py-2 px-4 text-gray-900 dark:text-white">{{ serviceRequest.status }}</td>
             <td class="py-2 px-4 text-gray-900 dark:text-white">{{ serviceRequest.description }}</td>
+            <td class="py-2 px-4 text-gray-900 dark:text-white">
+              <span v-if="serviceRequest.product">{{ serviceRequest.product.name }} ({{ serviceRequest.product.category }})</span>
+              <span v-else>-</span>
+            </td>
           </tr>
         </tbody>
       </table>

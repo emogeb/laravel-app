@@ -1,5 +1,5 @@
 <template>
-  <AppLayout :breadcrumbs="breadcrumbs" :services="services">
+  <AppLayout :breadcrumbs="breadcrumbs" :services="props.services">
     <Head title="Profile settings" />
 
     <SettingsLayout>
@@ -39,7 +39,7 @@
             <InputError class="mt-2" :message="form.errors.address" />
           </div>
 
-          <div v-if="mustVerifyEmail && !user.email_verified_at">
+          <div v-if="props.mustVerifyEmail && !user.email_verified_at">
             <p class="-mt-4 text-sm text-muted-foreground">
               Your email address is unverified.
               <Link
@@ -52,7 +52,7 @@
               </Link>
             </p>
 
-            <div v-if="status === 'verification-link-sent'" class="mt-2 text-sm font-medium text-green-600">
+            <div v-if="props.status === 'verification-link-sent'" class="mt-2 text-sm font-medium text-green-600">
               A new verification link has been sent to your email address.
             </div>
           </div>
@@ -91,12 +91,20 @@ import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { type BreadcrumbItem, type User } from '@/types';
 
 interface Props {
-    mustVerifyEmail: boolean;
+    mustVerifyEmail?: boolean;
     status?: string;
-    services: any[];
+    services?: Array<{
+        id: number;
+        name: string;
+        slug: string;
+        is_active: boolean;
+    }>;
 }
 
-defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    mustVerifyEmail: false,
+    services: () => [],
+});
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -106,7 +114,7 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 const page = usePage();
-const user = page.props.auth.user as User;
+const user = (page.props.auth as any).user as User;
 
 const form = useForm({
     name: user.name,

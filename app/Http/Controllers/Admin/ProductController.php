@@ -37,12 +37,12 @@ class ProductController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'category' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'price' => 'nullable|numeric',
-            'stock' => 'nullable|integer',
-            'features' => 'nullable|string',
-            'photo' => 'nullable|image|max:2048',
+            'category' => 'required|string|in:kamera,internet,çanak anten',
+            'description' => 'required|string|min:10',
+            'price' => 'required|numeric|min:0',
+            'stock' => 'required|integer|min:0',
+            'features' => 'required|string',
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $photoPath = null;
@@ -60,7 +60,7 @@ class ProductController extends Controller
             'photo' => $photoPath,
         ]);
 
-        return redirect()->route('profile');
+        return redirect()->route('admin.products.index')->with('success', 'Ürün başarıyla eklendi!');
     }
 
     /**

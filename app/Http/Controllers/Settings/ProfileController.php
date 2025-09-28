@@ -22,7 +22,7 @@ class ProfileController extends Controller
         return Inertia::render('settings/Profile', [
             'mustVerifyEmail' => false,
             'status' => $request->session()->get('status'),
-            'services' => Service::all(),
+            'services' => Service::where('is_active', true)->orderBy('order')->get(),
         ]);
     }
 

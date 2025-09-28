@@ -1,2 +1,127 @@
+# Robots.txt for Fast Teknik - Teknik Hizmetler Platformu
+# https://fast-teknik.test
+
+# Tüm botlara izin ver
 User-agent: *
-Disallow:
+Allow: /
+
+# Ana sayfa ve hizmet sayfaları - SEO için önemli
+Allow: /
+Allow: /hizmetler
+Allow: /hizmetler/kamera-sistemleri
+Allow: /hizmetler/internet-hizmetleri
+Allow: /hizmetler/uydu-sistemleri
+Allow: /iletisim
+Allow: /internet-hiz-testi
+
+# Kullanıcı hesapları ve özel alanlar - Engelle
+Disallow: /profil
+Disallow: /profil/
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+Disallow: /reset-password/
+Disallow: /email/verify
+Disallow: /email/verify/
+
+# Admin paneli - Tamamen engelle
+Disallow: /admin
+Disallow: /admin/
+
+# Hizmet talepleri - Kişisel veri içerebilir
+Disallow: /hizmet-talepleri/
+Disallow: /service-requests/
+Disallow: /hizmet-talebi
+Disallow: /hizmet-talebi-sorgula
+Disallow: /service-request
+
+# API endpoint'leri - Engelle
+Disallow: /api/
+
+# Sistem dosyaları ve klasörleri - Engelle
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /tests/
+Disallow: /node_modules/
+Disallow: /.env
+Disallow: /.git/
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /artisan
+Disallow: /phpunit.xml
+Disallow: /tsconfig.json
+Disallow: /vite.config.ts
+Disallow: /eslint.config.js
+Disallow: /components.json
+
+# Cache ve log dosyaları - Engelle
+Disallow: /storage/logs/
+Disallow: /storage/framework/
+Disallow: /storage/app/
+Disallow: /bootstrap/cache/
+
+# Geçici dosyalar - Engelle
+Disallow: /*.tmp$
+Disallow: /*.log$
+Disallow: /*.cache$
+Disallow: /*.bak$
+
+# Özel Google bot ayarları
+User-agent: Googlebot
+Allow: /
+Allow: /hizmetler
+Allow: /hizmetler/kamera-sistemleri
+Allow: /hizmetler/internet-hizmetleri
+Allow: /hizmetler/uydu-sistemleri
+Allow: /iletisim
+Allow: /internet-hiz-testi
+Crawl-delay: 1
+
+# Bing bot ayarları
+User-agent: Bingbot
+Allow: /
+Allow: /hizmetler
+Allow: /hizmetler/kamera-sistemleri
+Allow: /hizmetler/internet-hizmetleri
+Allow: /hizmetler/uydu-sistemleri
+Allow: /iletisim
+Allow: /internet-hiz-testi
+Crawl-delay: 2
+
+# Yandex bot ayarları
+User-agent: YandexBot
+Allow: /
+Allow: /hizmetler
+Allow: /hizmetler/kamera-sistemleri
+Allow: /hizmetler/internet-hizmetleri
+Allow: /hizmetler/uydu-sistemleri
+Allow: /iletisim
+Allow: /internet-hiz-testi
+Crawl-delay: 3
+
+# Zararlı botları engelle
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+# Sitemap konumu (sitemap.xml dosyası oluşturulduğunda)
+# Sitemap: https://fast-teknik.test/sitemap.xml
+
+# Host bilgisi (canlı domain'e geçildiğinde güncellenecek)
+# Host: https://fast-teknik.test

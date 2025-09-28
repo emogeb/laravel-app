@@ -58,8 +58,8 @@ const page = usePage();
 const notification = ref(null);
 
 watch(() => page.props.flash?.success, (newVal) => {
-  console.log('Flash success data:', newVal);
   if (newVal) {
+    console.log('Flash success data:', newVal);
     notification.value = newVal;
     // Mesajı belirli bir süre sonra gizle (isteğe bağlı)
     // setTimeout(() => {

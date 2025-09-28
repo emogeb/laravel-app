@@ -12,12 +12,20 @@ import SettingsLayout from '@/layouts/settings/Layout.vue';
 import { type BreadcrumbItem, type User } from '@/types';
 
 interface Props {
-    mustVerifyEmail: boolean;
+    mustVerifyEmail?: boolean;
     status?: string;
-    services: any[];
+    services?: Array<{
+        id: number;
+        name: string;
+        slug: string;
+        is_active: boolean;
+    }>;
 }
 
-defineProps<Props>();
+const props = withDefaults(defineProps<Props>(), {
+    mustVerifyEmail: false,
+    services: () => [],
+});
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
