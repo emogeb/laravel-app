@@ -1,8 +1,6 @@
 <script setup lang="ts">
-import AppLayout from '@/layouts/app/AppSidebarLayout.vue';
 import type { BreadcrumbItemType } from '@/types';
 import { Link } from '@inertiajs/vue3';
-import { computed } from 'vue';
 
 interface Props {
     breadcrumbs?: BreadcrumbItemType[];
@@ -21,7 +19,7 @@ withDefaults(defineProps<Props>(), {
     <header class="bg-white shadow dark:bg-gray-800">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-between items-center">
-          <Link :href="route('home')" class="text-2xl font-bold text-orange-600 dark:text-orange-500">
+          <Link :href="route('home')" class="text-2xl font-bold text-gray-900 dark:text-white">
             Fast Teknik
           </Link>
           <nav class="space-x-4">
