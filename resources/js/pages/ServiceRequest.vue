@@ -62,12 +62,22 @@
                 {{ option.label }}
               </button>
             </div>
+            
+            <!-- Mobile Continue Button (sadece telefon görünümünde) -->
+            <div v-if="selectedOption" class="sm:hidden mt-4 flex justify-center">
+              <button
+                @click="handleContinue"
+                class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
+              >
+                Devam Et
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Continue Button -->
-      <div v-if="selected && selectedOption" class="mt-8 flex justify-center">
+      <!-- Desktop Continue Button (sadece büyük ekranlarda) -->
+      <div v-if="selected && selectedOption" class="hidden sm:flex mt-8 justify-center">
         <button
           @click="handleContinue"
           class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
