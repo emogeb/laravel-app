@@ -255,7 +255,7 @@
     <div class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
       <!-- WhatsApp Button -->
       <a
-        href="https://wa.me/905411191089?text=Merhaba! Fast Teknik hizmetleri hakkında bilgi almak istiyorum."
+        href="https://wa.me/905469118061?text=Merhaba! Fast Teknik hizmetleri hakkında bilgi almak istiyorum."
         target="_blank"
         rel="noopener noreferrer"
         class="
@@ -277,7 +277,7 @@
 
       <!-- Phone Button -->
       <a
-        href="tel:+905411191089"
+        href="tel:+905469118061"
         class="
           bg-blue-600 hover:bg-blue-700 
           text-white 

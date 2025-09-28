@@ -94,11 +94,11 @@
           <div class="bg-white rounded-lg shadow-lg p-6">
             <h3 class="text-xl font-semibold mb-4">İletişim</h3>
             <div class="space-y-2 text-gray-600">
-              <p><i class="fas fa-phone mr-2"></i> +90 555 123 4567</p>
+              <p><i class="fas fa-phone mr-2"></i> +90 546 911 8061</p>
               <p><i class="fas fa-envelope mr-2"></i> info@fastteknik.com</p>
               <p><i class="fas fa-map-marker-alt mr-2"></i> İzmir, Türkiye</p>
               <a 
-                href="https://wa.me/905551234567?text=Merhaba, {{ service.name }} hizmeti hakkında bilgi almak istiyorum."
+                href="https://wa.me/905469118061?text=Merhaba, {{ service.name }} hizmeti hakkında bilgi almak istiyorum."
                 target="_blank"
                 class="flex items-center text-green-600 hover:text-green-700 mt-4"
               >
