@@ -1,90 +1,104 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16 py-10 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16 relative">
+    <!-- Radial Gradient Background -->
+    <div class="absolute inset-0 bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(56,189,248,.15),transparent)] pointer-events-none"></div>
+    
     <TopBar />
-    <div class="max-w-3xl mx-auto mt-10">
-      <h1 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-4">Servis Talebi Oluştur</h1>
-      <div class="flex justify-center mb-6">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 space-y-10 md:space-y-14 relative">
+      <!-- Hero Section -->
+      <div class="text-center space-y-4">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white tracking-tight">
+          Servis Talebi Oluştur
+        </h1>
         <button
           @click="handleMainButton"
-          class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
+          class="inline-flex items-center px-6 py-2.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 hover:underline"
         >
-          Servis Talebi Oluştur
+          Hemen Başla
+          <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
         </button>
       </div>
-      <div ref="cardsSection" class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+
+      <!-- Services Grid -->
+      <div ref="cardsSection" class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
         <div
           v-for="service in services"
           :key="service.key"
           @click="selectService(service.key)"
+          :data-checked="selected === service.key"
           :class="[
-            'group cursor-pointer rounded-2xl p-8 flex flex-col items-center justify-center transition-all duration-300',
-            'bg-white dark:bg-gray-800 shadow-lg',
-            selected === service.key ? 'ring-2 ring-blue-500' : '',
-            'hover:scale-105 hover:shadow-xl hover:bg-gradient-to-br hover:from-blue-100 hover:to-blue-200 dark:hover:from-blue-900/40 dark:hover:to-blue-800/40',
-            'relative overflow-hidden h-full'
+            'group cursor-pointer rounded-2xl p-6 md:p-7 flex flex-col transition-all duration-300',
+            'bg-white/9 dark:bg-white/9 backdrop-blur-sm shadow-lg',
+            'ring-1 ring-white/10 hover:ring-white/20',
+            selected === service.key 
+              ? 'ring-2 ring-blue-400' 
+              : '',
+            'relative overflow-hidden'
           ]"
+          :style="selected === service.key ? 'background: linear-gradient(180deg, rgba(59,130,246,.08), transparent), rgba(255,255,255,.08);' : ''"
         >
+          <!-- Check Icon (only when selected) -->
+          <div v-if="selected === service.key" class="absolute right-3 top-3 size-5 rounded-full bg-blue-500 text-white flex items-center justify-center">
+            <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+            </svg>
+          </div>
+
+          <!-- Icon -->
           <div class="flex items-center justify-center mb-4">
-            <span
-              :class="[
-                'inline-flex items-center justify-center rounded-full transition-transform duration-300',
-                'text-6xl',
-                'group-hover:rotate-6'
-              ]"
-            >
-              <component :is="service.icon" class="text-blue-600 dark:text-blue-400" />
-            </span>
+            <component :is="service.icon" class="w-12 h-12 text-blue-600 dark:text-blue-400 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110" />
           </div>
+
+          <!-- Content -->
           <div class="flex flex-col items-center text-center flex-grow">
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2 leading-tight">{{ service.title }}</h2>
-            <p class="text-gray-500 dark:text-gray-300 text-center flex-grow">{{ service.desc }}</p>
+            <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">{{ service.title }}</h2>
+            <p class="text-sm text-gray-600 dark:text-slate-300/90 mb-3">{{ service.desc }}</p>
+            
+            <!-- Mini Benefits -->
+            <p class="text-xs text-slate-400 dark:text-slate-400">{{ service.benefits }}</p>
           </div>
 
-          <!-- Glow effect -->
-          <div class="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <div class="absolute -inset-4 rounded-2xl bg-blue-400/10 blur-2xl"></div>
-          </div>
-
-          <!-- Service Options -->
-          <div v-if="selected === service.key" class="w-full mt-6 space-y-4">
-            <div class="flex gap-4 justify-center">
+          <!-- Service Options (Chips) -->
+          <div v-if="selected === service.key" class="w-full mt-4">
+            <div class="flex flex-wrap gap-2 justify-center">
               <button
                 v-for="option in service.options"
                 :key="option.id"
                 @click.stop="selectOption(option.id)"
                 :class="[
-                  'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
+                  'text-xs px-2.5 py-1 rounded-xl font-medium transition-all duration-200',
                   selectedOption === option.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                    ? 'bg-blue-500 text-white ring-1 ring-blue-400'
+                    : 'bg-white/10 text-slate-200 ring-1 ring-white/15 hover:bg-white/20'
                 ]"
               >
                 {{ option.label }}
-              </button>
-            </div>
-            
-            <!-- Mobile Continue Button (sadece telefon görünümünde) -->
-            <div v-if="selectedOption" class="sm:hidden mt-4 flex justify-center">
-              <button
-                @click="handleContinue"
-                class="inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
-              >
-                Devam Et
               </button>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Desktop Continue Button (sadece büyük ekranlarda) -->
-      <div v-if="selected && selectedOption" class="hidden sm:flex mt-8 justify-center">
-        <button
-          @click="handleContinue"
-          class="inline-flex items-center px-8 py-3 border border-transparent text-base font-medium rounded-xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300"
-        >
-          Devam Et
-        </button>
-      </div>
+      <!-- Continue Button -->
+      <Transition
+        enter-active-class="transition-opacity duration-300"
+        enter-from-class="opacity-0"
+        enter-to-class="opacity-100"
+        leave-active-class="transition-opacity duration-300"
+        leave-from-class="opacity-100"
+        leave-to-class="opacity-0"
+      >
+        <div v-if="selected && selectedOption" class="flex justify-center">
+          <button
+            @click="handleContinue"
+            class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+          >
+            Devam Et
+          </button>
+        </div>
+      </Transition>
     </div>
   </div>
 </template>
@@ -100,6 +114,7 @@ const services = [
     key: 'camera',
     title: 'Kamera Sistemleri',
     desc: 'Güvenlik kamera kurulumu, arıza ve bakım hizmetleri',
+    benefits: 'PoE & NVR · Mobil erişim',
     icon: CameraIcon,
     options: [
       { id: 'camera_ariza', label: 'Arıza' },
@@ -110,6 +125,7 @@ const services = [
     key: 'internet',
     title: 'İnternet Hizmetleri',
     desc: 'İnternet bağlantısı, ağ altyapısı ve sorun giderme',
+    benefits: 'Modem/ONT · LAN yapılandırma',
     icon: WifiIcon,
     options: [
       { id: 'internet_ariza', label: 'Arıza' },
@@ -120,6 +136,7 @@ const services = [
     key: 'satellite',
     title: 'Uydu Sistemleri',
     desc: 'Çanak anten kurulumu, uydu ayarı ve arıza hizmetleri',
+    benefits: 'LNB/Çanak ayar · Sinyal ölçümü',
     icon: GlobeAltIcon,
     options: [
       { id: 'satellite_ariza', label: 'Anten Arıza' },

@@ -1,5 +1,8 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
+  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16 pb-24 relative">
+    <!-- Radial Gradient Background -->
+    <div class="absolute inset-0 bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(56,189,248,.15),transparent)] pointer-events-none"></div>
+    
     <TopBar />
     <SEO
       title="Fast Teknik | Hizmetlerimiz"
@@ -10,7 +13,7 @@
 
     <div class="max-w-7xl mx-auto py-6 sm:py-12 px-4 sm:px-6 lg:px-8 relative">
       <!-- SVG Blob Background -->
-      <div class="absolute inset-0 opacity-5 dark:opacity-10">
+      <div class="absolute inset-0 opacity-5 dark:opacity-10 pointer-events-none">
         <svg viewBox="0 0 1200 800" preserveAspectRatio="none" class="w-full h-full">
           <path d="M0,200 C300,100 600,300 900,150 C1100,50 1200,200 1200,400 L1200,800 L0,800 Z" fill="url(#servicesGradient)" class="animate-pulse"></path>
           <path d="M0,300 C400,200 700,400 1000,250 C1150,150 1200,300 1200,500 L1200,800 L0,800 Z" fill="url(#servicesGradient2)" class="animate-pulse" style="animation-delay: 1s;"></path>
@@ -29,7 +32,7 @@
 
       <!-- Breadcrumb Navigation -->
       <nav class="flex mb-4 sm:mb-6 relative z-10" aria-label="Breadcrumb">
-        <ol class="flex items-center space-x-2">
+        <ol class="flex items-center space-x-2 text-xs sm:text-sm">
           <li>
             <Link :href="route('home')" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors duration-300">
               Anasayfa
@@ -39,90 +42,162 @@
             <span class="text-gray-400 mx-2">/</span>
           </li>
           <li>
-            <span class="text-gray-700 dark:text-gray-300">Hizmetlerimiz</span>
+            <span class="text-gray-700 dark:text-gray-300" aria-current="page">Hizmetlerimiz</span>
           </li>
         </ol>
       </nav>
 
-      <div class="text-center relative z-10">
-        <h1 class="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+      <!-- Page Header -->
+      <div class="text-center relative z-10 mb-10 md:mb-14">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
           Hizmetlerimiz
         </h1>
-        <p class="mt-2 sm:mt-4 text-base sm:text-lg text-gray-500 dark:text-gray-300">
+        <p class="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-gray-600 dark:text-slate-300 max-w-3xl mx-auto">
           Tüm teknik servis ihtiyaçlarınız için profesyonel çözümler
         </p>
       </div>
 
-      <div class="mt-8 sm:mt-12 space-y-8 sm:space-y-12 relative z-10">
+      <!-- Services Grid -->
+      <div class="space-y-10 md:space-y-14 relative z-10">
         <div v-for="(service, index) in services" :key="service.slug" 
-             class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 ease-in-out w-[88%] mx-auto group">
-          <div class="p-4 sm:p-6">
-            <div class="text-center">
-              <h3 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                {{ service.title }}
-              </h3>
-              <p class="mt-1 sm:mt-2 text-xs sm:text-sm text-gray-500 dark:text-gray-300">
-                {{ service.description }}
-              </p>
-            </div>
-
-            <div class="mt-4 sm:mt-6">
-              <div
-                class="grid grid-cols-1 w-full gap-y-3 sm:gap-x-6 sm:gap-y-4 sm:grid-cols-12">
-                <div v-for="(subService, subIdx) in service.subServices" :key="subService.slug"
-                     :class="[
-                       'group bg-gray-50 dark:bg-gray-700 p-3 sm:p-4 rounded-xl hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 cursor-pointer relative overflow-hidden',
-                       subIdx === 0 ? 'sm:col-start-3 sm:col-span-4' : '',
-                       subIdx === 1 ? 'sm:col-start-7 sm:col-span-4' : ''
-                     ]">
-                  <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div class="relative flex items-center">
-                    <div class="flex-shrink-0">
-                      <i :class="service.icon" class="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 dark:text-blue-400 group-hover:rotate-6 group-hover:scale-110 transition-all duration-300"></i>
-                    </div>
-                    <div class="ml-3 sm:ml-4 group-hover:translate-x-2 transition-transform duration-300">
-                      <h4 class="text-sm sm:text-base font-medium text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                        {{ subService.title }}
-                      </h4>
-                      <p class="mt-0.5 sm:mt-1 text-xs sm:text-sm text-gray-500 dark:text-gray-300 line-clamp-2">
-                        {{ subService.description }}
-                      </p>
-                    </div>
-                  </div>
-                  <div class="mt-3 sm:mt-4 text-right">
-                    <Link :href="
-                        service.slug === 'kamera-sistemleri' ? route('services.camera') :
-                        service.slug === 'internet-hizmetleri' ? route('services.internet') :
-                        service.slug === 'uydu-sistemleri' ? route('services.satellite') :
-                        route('services.show', service.slug) // Fallback for other service types
-                      " 
-                          class="text-xs sm:text-sm font-medium text-blue-600 hover:text-blue-500 dark:text-blue-400 dark:hover:text-blue-300 group-hover:underline transition-all duration-300">
-                      Detaylı Bilgi 
-                      <span class="inline-block transition-transform duration-300 group-hover:translate-x-1">&rarr;</span>
-                    </Link>
-                  </div>
+             class="bg-white dark:bg-white/9 backdrop-blur-sm overflow-hidden shadow-lg rounded-2xl ring-1 ring-white/10 hover:ring-white/20 hover:shadow-2xl transition-all duration-500 ease-in-out w-[90%] mx-auto">
+          <div class="p-6 md:p-7">
+            <!-- Category Header with Icon -->
+            <div class="flex flex-col items-center text-center gap-4 mb-6">
+              <div class="flex-shrink-0">
+                <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-500 dark:to-blue-700 flex items-center justify-center shadow-lg">
+                  <component :is="service.iconComponent" class="w-6 h-6 md:w-7 md:h-7 text-white" />
                 </div>
               </div>
+              <div class="flex-1">
+                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-slate-50 mb-3 tracking-tight">
+                  {{ service.title }}
+                </h2>
+                <p class="text-sm sm:text-base text-gray-600 dark:text-slate-300/90 mb-4">
+                  {{ service.description }}
+                </p>
+                
+                <!-- Badges -->
+                <div class="flex flex-wrap items-center justify-center gap-2">
+                  <span v-for="badge in service.badges" :key="badge" 
+                        class="rounded-full text-xs px-2.5 py-1 bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20">
+                    {{ badge }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sub-Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+              <Link v-for="(subService, subIdx) in service.subServices" :key="subService.slug"
+                   :href="
+                      service.slug === 'kamera-sistemleri' ? route('services.camera') :
+                      service.slug === 'internet-hizmetleri' ? route('services.internet') :
+                      service.slug === 'uydu-sistemleri' ? route('services.satellite') :
+                      route('services.show', service.slug)
+                    "
+                   :class="[
+                     'group relative bg-gray-50/80 dark:bg-white/5 hover:bg-white dark:hover:bg-white/7 p-6 rounded-xl ring-1 ring-gray-200/50 dark:ring-white/10 hover:ring-blue-500/50 dark:hover:ring-blue-400/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden',
+                     subIdx === 0 ? 'md:col-start-2 md:col-span-5' : '',
+                     subIdx === 1 ? 'md:col-start-7 md:col-span-5' : ''
+                   ]">
+                <!-- Gradient Overlay on Hover -->
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                
+                <!-- Content -->
+                <div class="relative text-center">
+                  <div class="flex flex-col items-center gap-3 mb-3">
+                    <div class="flex-shrink-0">
+                      <component :is="service.iconComponent" class="w-5 h-5 text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" />
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-lg font-semibold text-gray-900 dark:text-slate-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 mb-2">
+                        {{ subService.title }}
+                      </h3>
+                      <p class="text-sm/6 text-gray-600 dark:text-slate-300/90">
+                        {{ subService.description }}
+                      </p>
+                      
+                      <!-- Feature List -->
+                      <ul v-if="subService.features" class="mt-3 space-y-1 text-slate-300/90 text-sm/6 text-center">
+                        <li v-for="(feature, idx) in subService.features" :key="idx">
+                          {{ feature }}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                  <!-- CTA Buttons -->
+                  <div class="mt-5 flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <!-- Primary CTA -->
+                    <button 
+                      @click.prevent="$inertia.visit(route('service-request'))"
+                      class="text-sm/6 font-medium text-blue-600 dark:text-blue-400 hover:underline transition-all duration-300 cursor-pointer">
+                      Teklif Al
+                      <span class="inline-block transition-transform duration-300 hover:translate-x-1 ml-1">&rarr;</span>
+                    </button>
+                    
+                    <!-- Secondary CTA -->
+                    <span class="text-sm/6 font-medium text-blue-600 dark:text-blue-400 group-hover:underline transition-all duration-300 cursor-pointer">
+                      Detayları Gör
+                      <span class="inline-block transition-transform duration-300 group-hover:translate-x-1 ml-1">&rarr;</span>
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            <!-- Category CTA Button -->
+            <div class="mt-6 md:mt-8 pt-6 border-t border-gray-200 dark:border-white/10 text-center">
+              <Link :href="route('service-request')"
+                    class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-blue-500 hover:bg-blue-400 rounded-xl transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                {{ service.title }} için Servis Talebi
+              </Link>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Call to Action Section -->
-      <div class="mt-12 sm:mt-16 text-center relative z-10">
-        <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
+      <!-- Main CTA Section (Non-sticky for larger screens) -->
+      <div class="mt-12 sm:mt-16 text-center relative z-10 hidden sm:block">
+        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
           Hizmetlerimizden Yararlanmak İster Misiniz?
         </h2>
-        <p class="mt-2 sm:mt-4 text-base sm:text-lg text-gray-500 dark:text-gray-300">
+        <p class="text-base sm:text-lg text-gray-600 dark:text-slate-300 mb-6">
           Hemen servis talebi oluşturun, uzman ekibimiz size yardımcı olsun.
         </p>
-        <div class="mt-4 sm:mt-8">
-          <Link :href="route('service-request')" 
-                class="inline-flex items-center px-6 sm:px-8 py-2 sm:py-3 border border-transparent text-sm sm:text-base font-medium rounded-xl shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:scale-105">
-            Servis Talebi Oluştur
-          </Link>
-        </div>
+        <Link :href="route('service-request')" 
+              class="inline-flex items-center justify-center gap-3 px-8 py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          Servis Talebi Oluştur
+        </Link>
       </div>
+    </div>
+
+    <!-- Sticky CTA Button (Mobile only) -->
+    <div class="sm:hidden fixed bottom-4 left-4 right-4 z-50">
+      <Link :href="route('service-request')" 
+            class="flex items-center justify-center gap-3 w-full px-6 py-4 text-base font-bold rounded-xl shadow-2xl text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:scale-105 active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+          <polyline points="10 9 9 9 8 9"></polyline>
+        </svg>
+        Servis Talebi Oluştur
+      </Link>
     </div>
   </div>
 </template>
@@ -131,23 +206,28 @@
 import { Link } from '@inertiajs/vue3';
 import SEO from '@/components/SEO.vue';
 import TopBar from '@/components/TopBar.vue';
+import { Camera, Wifi, Satellite } from 'lucide-vue-next';
 
 const services = [
     {
         title: 'Kamera Sistemleri',
         description: 'Güvenlik kamera sistemleri kurulumu ve bakım hizmetleri',
         icon: 'camera',
+        iconComponent: Camera,
         slug: 'kamera-sistemleri',
+        badges: ['Aynı Gün Keşif', '2 Yıl İşçilik Garantisi', 'Uzman Ekip'],
         subServices: [
             {
                 title: 'Kamera Kurulumu',
                 description: 'IP ve analog kamera sistemleri kurulumu',
-                slug: 'kamera-kurulumu'
+                slug: 'kamera-kurulumu',
+                features: ['PoE kurulum • NVR konfigürasyon • Mobil erişim']
             },
             {
                 title: 'Kamera Arıza',
                 description: 'Kamera sistemleri arıza tespit ve onarım',
-                slug: 'kamera-ariza'
+                slug: 'kamera-ariza',
+                features: ['Hızlı arıza tespit • Hard disk kontrolü • Sistem bakımı']
             }
         ]
     },
@@ -155,17 +235,21 @@ const services = [
         title: 'İnternet Hizmetleri',
         description: 'İnternet bağlantısı kurulumu ve sorun giderme hizmetleri',
         icon: 'wifi',
+        iconComponent: Wifi,
         slug: 'internet-hizmetleri',
+        badges: ['7/24 Destek', 'Hızlı Çözüm', 'Ücretsiz Keşif'],
         subServices: [
             {
                 title: 'DSL Kurulum',
                 description: 'İnternet bağlantısı kurulumu ve ayarları',
-                slug: 'dsl-kurulum'
+                slug: 'dsl-kurulum',
+                features: ['Modem kurulum • PPP ayarları • Hız optimizasyonu']
             },
             {
                 title: 'Ağ Altyapısı',
                 description: 'Wi-Fi ve ağ sistemleri kurulumu',
-                slug: 'ag-altyapisi'
+                slug: 'ag-altyapisi',
+                features: ['Access Point • Mesh sistem • Kablo çekimi']
             }
         ]
     },
@@ -173,17 +257,21 @@ const services = [
         title: 'Uydu Sistemleri',
         description: 'Uydu anten sistemleri kurulum ve bakım hizmetleri',
         icon: 'satellite-dish',
+        iconComponent: Satellite,
         slug: 'uydu-sistemleri',
+        badges: ['Profesyonel Montaj', '1 Yıl Garanti', 'Kaliteli Malzeme'],
         subServices: [
             {
                 title: 'Çanak Anten Arıza',
                 description: 'Uydu anten sistemleri arıza tespit ve onarım',
-                slug: 'canak-anten-ariza'
+                slug: 'canak-anten-ariza',
+                features: ['Sinyal kontrolü • LNB değişimi • Hızlı onarım']
             },
             {
                 title: 'Uydu Ayarlama',
                 description: 'Uydu anten kurulumu ve kanal ayarları',
-                slug: 'uydu-ayarlama'
+                slug: 'uydu-ayarlama',
+                features: ['Çanak montaj • Receiver ayar • Kanal tarama']
             }
         ]
     }
