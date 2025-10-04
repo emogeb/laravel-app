@@ -9,7 +9,7 @@
     />
 
     <!-- Hero Section -->
-    <div class="relative overflow-hidden">
+    <div class="relative overflow-hidden min-h-[500px] sm:min-h-[600px]">
       <!-- Simplified Background - No SVG for better LCP -->
       <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20"></div>
       
@@ -225,7 +225,7 @@
     <NotificationCard />
 
     <!-- Fixed Contact Buttons -->
-    <div class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3">
+    <div class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3" style="will-change: transform;">
       <!-- WhatsApp Button -->
       <a
         href="https://wa.me/905469118061?text=Merhaba! Fast Teknik hizmetleri hakkında bilgi almak istiyorum."
@@ -241,8 +241,8 @@
           transition-all duration-300 
           hover:scale-110 
           group
-          animate-pulse
         "
+        style="will-change: transform;"
         title="WhatsApp ile İletişim"
       >
         <i class="fab fa-whatsapp text-2xl group-hover:scale-110 transition-transform duration-300"></i>
@@ -261,8 +261,8 @@
           transition-all duration-300 
           hover:scale-110 
           group
-          animate-pulse
         "
+        style="will-change: transform;"
         title="Telefon ile Ara"
       >
         <i class="fas fa-phone text-xl group-hover:scale-110 transition-transform duration-300"></i>

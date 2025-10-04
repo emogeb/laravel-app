@@ -1,5 +1,5 @@
 <template>
-  <div v-if="notification" class="fixed top-4 right-4 z-50 w-full max-w-sm rounded-lg shadow-lg overflow-hidden pointer-events-auto ring-1 ring-black ring-opacity-5 bg-white dark:bg-gray-800">
+  <div v-if="notification" class="fixed top-4 right-4 z-50 w-full max-w-sm min-h-[120px] rounded-lg shadow-lg overflow-hidden pointer-events-auto ring-1 ring-black ring-opacity-5 bg-white dark:bg-gray-800" style="will-change: transform;">
     <div class="p-4">
       <div class="flex items-start">
         <div class="flex-shrink-0">
