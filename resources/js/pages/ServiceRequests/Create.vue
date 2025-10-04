@@ -4,6 +4,10 @@
     <div class="absolute inset-0 bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(56,189,248,.12),transparent)] pointer-events-none"></div>
     
     <TopBar />
+    <SEO
+      title="Hizmet Talebi Formu | Fast Teknik"
+      description="Fast Teknik hizmet talebi oluşturma formu. Bilgilerinizi girin ve hizmet talebinizi kolayca oluşturun."
+    />
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative">
       <!-- Hero Section -->
@@ -503,6 +507,7 @@ import { Link, useForm } from '@inertiajs/vue3';
 import { CameraIcon, WifiIcon, GlobeAltIcon } from '@heroicons/vue/24/outline';
 import { computed, ref } from 'vue';
 import TopBar from '@/components/TopBar.vue';
+import SEO from '@/components/SEO.vue';
 
 const props = defineProps({
   serviceKey: {

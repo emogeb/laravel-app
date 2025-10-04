@@ -4,6 +4,11 @@
     <div class="absolute inset-0 bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(56,189,248,.15),transparent)] pointer-events-none"></div>
     
     <TopBar />
+    <SEO
+      title="Servis Talebi Oluştur | Fast Teknik"
+      description="Fast Teknik servis talebi oluşturun. Kamera sistemleri, internet hizmetleri ve uydu sistemleri için hızlı ve kolay talep formu."
+      keywords="servis talebi, teknik destek, hizmet talebi"
+    />
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 space-y-10 md:space-y-14 relative">
       <!-- Hero Section -->
       <div class="text-center space-y-4">
@@ -30,14 +35,13 @@
           :data-checked="selected === service.key"
           :class="[
             'group cursor-pointer rounded-2xl p-6 md:p-7 flex flex-col transition-all duration-300',
-            'bg-white/80 dark:bg-white/9 backdrop-blur-sm shadow-lg',
+            'bg-white/80 dark:bg-white/9 backdrop-blur-sm',
             'ring-1 ring-gray-200 dark:ring-white/10 hover:ring-blue-300 dark:hover:ring-white/20',
             selected === service.key 
-              ? 'ring-2 ring-blue-500' 
-              : '',
+              ? 'ring-2 ring-blue-500 dark:ring-blue-400 shadow-2xl scale-105 dark:shadow-blue-500/20' 
+              : 'shadow-lg',
             'relative overflow-hidden'
           ]"
-          :style="selected === service.key ? 'background: linear-gradient(180deg, rgba(59,130,246,.15), transparent), rgba(255,255,255,.9);' : ''"
         >
           <!-- Check Icon (only when selected) -->
           <div v-if="selected === service.key" class="absolute right-3 top-3 size-5 rounded-full bg-blue-500 text-white flex items-center justify-center">
@@ -107,6 +111,7 @@
 import { ref } from 'vue';
 import { CameraIcon, WifiIcon, GlobeAltIcon } from '@heroicons/vue/24/outline';
 import TopBar from '@/components/TopBar.vue';
+import SEO from '@/components/SEO.vue';
 import { Link, router } from '@inertiajs/vue3';
 
 const services = [

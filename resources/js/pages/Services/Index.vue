@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16 pb-24 relative">
+  <div class="min-h-screen bg-[#F3F6FC] dark:bg-gray-900 pt-16 pb-24 relative">
     <!-- Radial Gradient Background -->
-    <div class="absolute inset-0 bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(56,189,248,.15),transparent)] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(59,130,246,.05),transparent)] dark:bg-[radial-gradient(1200px_600px_at_50%_-100px,rgba(56,189,248,.15),transparent)] pointer-events-none"></div>
     
     <TopBar />
     <SEO
@@ -34,25 +34,25 @@
       <nav class="flex mb-4 sm:mb-6 relative z-10" aria-label="Breadcrumb">
         <ol class="flex items-center space-x-2 text-xs sm:text-sm">
           <li>
-            <Link :href="route('home')" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors duration-300">
+            <Link :href="route('home')" class="text-[#1F2937]/60 hover:text-[#2563EB] dark:text-gray-400 dark:hover:text-gray-300 transition-colors duration-300">
               Anasayfa
             </Link>
           </li>
           <li>
-            <span class="text-gray-400 mx-2">/</span>
+            <span class="text-[#1F2937]/40 dark:text-gray-400 mx-2">/</span>
           </li>
           <li>
-            <span class="text-gray-700 dark:text-gray-300" aria-current="page">Hizmetlerimiz</span>
+            <span class="text-[#1F2937] dark:text-gray-300 font-medium" aria-current="page">Hizmetlerimiz</span>
           </li>
         </ol>
       </nav>
 
       <!-- Page Header -->
       <div class="text-center relative z-10 mb-10 md:mb-14">
-        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#1E3A8A] dark:text-white">
           Hizmetlerimiz
         </h1>
-        <p class="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-gray-600 dark:text-slate-300 max-w-3xl mx-auto">
+        <p class="mt-3 sm:mt-4 text-base sm:text-lg md:text-xl text-[#1F2937]/80 dark:text-slate-300 max-w-3xl mx-auto">
           Tüm teknik servis ihtiyaçlarınız için profesyonel çözümler
         </p>
       </div>
@@ -60,7 +60,7 @@
       <!-- Services Grid -->
       <div class="space-y-10 md:space-y-14 relative z-10">
         <div v-for="(service, index) in services" :key="service.slug" 
-             class="bg-white dark:bg-white/9 backdrop-blur-sm overflow-hidden shadow-lg rounded-2xl ring-1 ring-white/10 hover:ring-white/20 hover:shadow-2xl transition-all duration-500 ease-in-out w-[90%] mx-auto">
+             class="bg-[#F9FAFB] dark:bg-white/9 backdrop-blur-sm overflow-hidden shadow-lg rounded-2xl ring-1 ring-[#E5E7EB] dark:ring-white/10 hover:ring-[#3B82F6]/30 dark:hover:ring-white/20 hover:shadow-2xl transition-all duration-500 ease-in-out w-[90%] mx-auto">
           <div class="p-6 md:p-7">
             <!-- Category Header with Icon -->
             <div class="flex flex-col items-center text-center gap-4 mb-6">
@@ -70,17 +70,17 @@
                 </div>
               </div>
               <div class="flex-1">
-                <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-slate-50 mb-3 tracking-tight">
+                <h2 class="text-4xl md:text-5xl font-bold text-[#1E3A8A] dark:text-slate-50 mb-3 tracking-tight">
                   {{ service.title }}
                 </h2>
-                <p class="text-sm sm:text-base text-gray-600 dark:text-slate-300/90 mb-4">
+                <p class="text-sm sm:text-base text-[#1F2937]/90 dark:text-slate-300/90 mb-4 font-medium">
                   {{ service.description }}
                 </p>
                 
                 <!-- Badges -->
                 <div class="flex flex-wrap items-center justify-center gap-2">
                   <span v-for="badge in service.badges" :key="badge" 
-                        class="rounded-full text-xs px-2.5 py-1 bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20">
+                        class="rounded-full text-xs px-2.5 py-1 font-semibold bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200/50 dark:bg-emerald-400/10 dark:text-emerald-300 dark:ring-emerald-300/20">
                     {{ badge }}
                   </span>
                 </div>
@@ -97,7 +97,7 @@
                       route('services.show', service.slug)
                     "
                    :class="[
-                     'group relative bg-gray-50/80 dark:bg-white/5 hover:bg-white dark:hover:bg-white/7 p-6 rounded-xl ring-1 ring-gray-200/50 dark:ring-white/10 hover:ring-blue-500/50 dark:hover:ring-blue-400/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden',
+                     'group relative bg-white dark:bg-white/5 hover:bg-[#F9FAFB] dark:hover:bg-white/7 p-6 rounded-xl ring-1 ring-[#E5E7EB] dark:ring-white/10 hover:ring-[#3B82F6]/50 dark:hover:ring-blue-400/30 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden',
                      subIdx === 0 ? 'md:col-start-2 md:col-span-5' : '',
                      subIdx === 1 ? 'md:col-start-7 md:col-span-5' : ''
                    ]">
@@ -111,10 +111,10 @@
                       <component :is="service.iconComponent" class="w-5 h-5 text-blue-600 dark:text-blue-400 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" />
                     </div>
                     <div class="flex-1">
-                      <h3 class="text-lg font-semibold text-gray-900 dark:text-slate-50 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 mb-2">
+                      <h3 class="text-lg font-semibold text-[#1E3A8A] dark:text-slate-50 group-hover:text-[#3B82F6] dark:group-hover:text-blue-400 transition-colors duration-300 mb-2">
                         {{ subService.title }}
                       </h3>
-                      <p class="text-sm/6 text-gray-600 dark:text-slate-300/90">
+                      <p class="text-sm/6 text-[#1F2937] dark:text-slate-300/90 font-medium">
                         {{ subService.description }}
                       </p>
                       
@@ -132,15 +132,14 @@
                     <!-- Primary CTA -->
                     <button 
                       @click.prevent="$inertia.visit(route('service-request'))"
-                      class="text-sm/6 font-medium text-blue-600 dark:text-blue-400 hover:underline transition-all duration-300 cursor-pointer">
+                      class="text-sm/6 font-semibold text-[#3B82F6] dark:text-blue-400 hover:text-[#2563EB] hover:underline transition-all duration-300 cursor-pointer">
                       Teklif Al
                       <span class="inline-block transition-transform duration-300 hover:translate-x-1 ml-1">&rarr;</span>
                     </button>
                     
                     <!-- Secondary CTA -->
-                    <span class="text-sm/6 font-medium text-blue-600 dark:text-blue-400 group-hover:underline transition-all duration-300 cursor-pointer">
+                    <span class="text-sm/6 font-semibold text-[#3B82F6] dark:text-blue-400 group-hover:text-[#2563EB] group-hover:underline transition-all duration-300 cursor-pointer">
                       Detayları Gör
-                      <span class="inline-block transition-transform duration-300 group-hover:translate-x-1 ml-1">&rarr;</span>
                     </span>
                   </div>
                 </div>
@@ -148,14 +147,9 @@
             </div>
 
             <!-- Category CTA Button -->
-            <div class="mt-6 md:mt-8 pt-6 border-t border-gray-200 dark:border-white/10 text-center">
+            <div class="mt-6 md:mt-8 pt-6 border-t border-[#E5E7EB] dark:border-white/10 text-center">
               <Link :href="route('service-request')"
-                    class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-medium text-white bg-blue-500 hover:bg-blue-400 rounded-xl transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
+                    class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-[#3B82F6] hover:bg-[#2563EB] rounded-xl transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg">
                 {{ service.title }} için Servis Talebi
               </Link>
             </div>
@@ -165,14 +159,14 @@
 
       <!-- Main CTA Section (Non-sticky for larger screens) -->
       <div class="mt-12 sm:mt-16 text-center relative z-10 hidden sm:block">
-        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#1E3A8A] dark:text-white mb-3">
           Hizmetlerimizden Yararlanmak İster Misiniz?
         </h2>
-        <p class="text-base sm:text-lg text-gray-600 dark:text-slate-300 mb-6">
+        <p class="text-base sm:text-lg text-[#1F2937]/80 dark:text-slate-300 mb-6">
           Hemen servis talebi oluşturun, uzman ekibimiz size yardımcı olsun.
         </p>
         <Link :href="route('service-request')" 
-              class="inline-flex items-center justify-center gap-3 px-8 py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:scale-105 hover:shadow-xl">
+              class="inline-flex items-center justify-center gap-3 px-8 py-4 text-base sm:text-lg font-semibold rounded-xl shadow-lg text-white bg-[#3B82F6] hover:bg-[#2563EB] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3B82F6] transition-all duration-300 hover:scale-105 hover:shadow-xl">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
             <polyline points="14 2 14 8 20 8"></polyline>
@@ -188,7 +182,7 @@
     <!-- Sticky CTA Button (Mobile only) -->
     <div class="sm:hidden fixed bottom-4 left-4 right-4 z-50">
       <Link :href="route('service-request')" 
-            class="flex items-center justify-center gap-3 w-full px-6 py-4 text-base font-bold rounded-xl shadow-2xl text-white bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-all duration-300 hover:scale-105 active:scale-95">
+            class="flex items-center justify-center gap-3 w-full px-6 py-4 text-base font-bold rounded-xl shadow-2xl text-white bg-[#3B82F6] hover:bg-[#2563EB] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3B82F6] transition-all duration-300 hover:scale-105 active:scale-95">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
           <polyline points="14 2 14 8 20 8"></polyline>
@@ -221,7 +215,7 @@ const services = [
                 title: 'Kamera Kurulumu',
                 description: 'IP ve analog kamera sistemleri kurulumu',
                 slug: 'kamera-kurulumu',
-                features: ['PoE kurulum • NVR konfigürasyon • Mobil erişim']
+                features: ['DVR kurulum• NVR konfigürasyon • Mobil erişim']
             },
             {
                 title: 'Kamera Arıza',
@@ -243,7 +237,7 @@ const services = [
                 title: 'DSL Kurulum',
                 description: 'İnternet bağlantısı kurulumu ve ayarları',
                 slug: 'dsl-kurulum',
-                features: ['Modem kurulum • PPP ayarları • Hız optimizasyonu']
+                features: ['Modem kurulum (adsl, dsl, fiber) • PPP ayarları • Hız optimizasyonu']
             },
             {
                 title: 'Ağ Altyapısı',
@@ -259,19 +253,19 @@ const services = [
         icon: 'satellite-dish',
         iconComponent: Satellite,
         slug: 'uydu-sistemleri',
-        badges: ['Profesyonel Montaj', '1 Yıl Garanti', 'Kaliteli Malzeme'],
+        badges: ['Profesyonel Montaj', '2 Yıl Garanti', 'Kaliteli Malzeme'],
         subServices: [
             {
-                title: 'Çanak Anten Arıza',
+                title: 'Çanak Anten Arıza ve Kurulum',
                 description: 'Uydu anten sistemleri arıza tespit ve onarım',
                 slug: 'canak-anten-ariza',
-                features: ['Sinyal kontrolü • LNB değişimi • Hızlı onarım']
+                features: ['Sinyal kontrolü • LNB değişimi • Çanak montaj']
             },
             {
-                title: 'Uydu Ayarlama',
+                title: 'Merkezi sistem arıza ve kurulum',
                 description: 'Uydu anten kurulumu ve kanal ayarları',
                 slug: 'uydu-ayarlama',
-                features: ['Çanak montaj • Receiver ayar • Kanal tarama']
+                features: ['Merkezi sistem arıza • Merkezi sistem kurulumu • Santral bakım onarım']
             }
         ]
     }
