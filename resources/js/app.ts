@@ -22,7 +22,18 @@ const appName = import.meta.env.VITE_APP_NAME || 'Fast Teknik';
 const head = createHead();
 
 createInertiaApp({
-    title: (title) => title ? `${title}` : 'Fast Teknik | İzmir Teknik Servis',
+    title: (title) => {
+        // If title already contains "Fast Teknik", don't append again
+        if (title && title.includes('Fast Teknik')) {
+            return title;
+        }
+        // If title exists, append brand
+        if (title) {
+            return `${title} | Fast Teknik`;
+        }
+        // Default fallback
+        return 'Fast Teknik | İzmir Teknik Servis';
+    },
     resolve: (name) => {
         const pages = import.meta.glob<DefineComponent>('./pages/**/*.vue');
         const pagePath = `./pages/${name}.vue`;

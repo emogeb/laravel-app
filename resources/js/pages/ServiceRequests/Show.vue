@@ -1,5 +1,9 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 dark:from-gray-800 dark:to-gray-900 py-10 px-4 sm:px-6 lg:px-8">
+    <SEO
+      :title="`Servis Talebi #${serviceRequest.request_number} | Fast Teknik`"
+      description="Fast Teknik servis talebi detayları ve durum takibi."
+    />
     <div class="max-w-3xl mx-auto">
       <div class="bg-white rounded-lg shadow-xl p-6 dark:bg-gray-700 dark:bg-opacity-80">
         <h1 class="text-2xl font-bold mb-6 text-gray-800 dark:text-white">Servis Talebi Detayları</h1>
@@ -72,6 +76,7 @@
 
 <script setup>
 import { Link, router } from '@inertiajs/vue3';
+import SEO from '@/components/SEO.vue';
 
 const props = defineProps({
   serviceRequest: {

@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import InputError from '@/components/InputError.vue';
+import SEO from '@/components/SEO.vue';
 
 // Assuming services are needed for AppLayout, provide an empty array for now
 const services = ref([]);
@@ -33,7 +34,10 @@ const submit = () => {
 
 <template>
     <AppLayout :services="services">
-        <Head title="İletişim" />
+        <SEO
+            title="İletişim | Fast Teknik"
+            description="Fast Teknik ile iletişime geçin. İzmir'de teknik servis hizmetleri için bizimle iletişime geçebilirsiniz."
+        />
 
         <div class="container mx-auto px-4 py-8">
             <h1 class="text-3xl font-bold mb-8 text-center">İletişim</h1>

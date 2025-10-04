@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Response;
 
 class SitemapController extends Controller
 {
     /**
-     * Generate XML sitemap for SEO
+     * Generate XML sitemap for SEO with dynamic content
      */
     public function index(): Response
     {
+        // Static important pages
         $urls = [
             [
                 'loc' => route('home'),
@@ -55,6 +57,17 @@ class SitemapController extends Controller
                 'priority' => '0.6'
             ],
         ];
+
+        // Add dynamic services from database
+        $services = Service::where('is_active', true)->get();
+        foreach ($services as $service) {
+            $urls[] = [
+                'loc' => route('services.show', $service->slug),
+                'lastmod' => $service->updated_at->toW3cString(),
+                'changefreq' => 'monthly',
+                'priority' => '0.8'
+            ];
+        }
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>';
         $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
