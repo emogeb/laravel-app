@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { Head } from '@vueuse/head';
+import { Head } from '@inertiajs/vue3';
 
 const props = defineProps({
   title: {

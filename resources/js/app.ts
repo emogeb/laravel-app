@@ -18,11 +18,11 @@ declare global {
     }
 }
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Fast Teknik';
 const head = createHead();
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => title ? `${title}` : 'Fast Teknik | İzmir Teknik Servis',
     resolve: (name) => {
         const pages = import.meta.glob<DefineComponent>('./pages/**/*.vue');
         const pagePath = `./pages/${name}.vue`;
