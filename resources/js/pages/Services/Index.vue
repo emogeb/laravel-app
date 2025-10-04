@@ -119,8 +119,8 @@
                       </p>
                       
                       <!-- Feature List -->
-                      <ul v-if="subService.features" class="mt-3 space-y-1 text-slate-300/90 text-sm/6 text-center">
-                        <li v-for="(feature, idx) in subService.features" :key="idx">
+                      <ul v-if="subService.features" class="mt-3 space-y-1 text-sm/6 text-center">
+                        <li v-for="(feature, idx) in subService.features" :key="idx" class="text-gray-700 dark:text-slate-300 font-medium">
                           {{ feature }}
                         </li>
                       </ul>
