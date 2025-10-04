@@ -1,5 +1,5 @@
 # Robots.txt for Fast Teknik - Teknik Hizmetler Platformu
-# https://fast-teknik.test
+# https://fastteknik.com
 
 # Tüm botlara izin ver
 User-agent: *
@@ -120,8 +120,8 @@ Disallow: /
 User-agent: BLEXBot
 Disallow: /
 
-# Sitemap konumu (sitemap.xml dosyası oluşturulduğunda)
-# Sitemap: https://fast-teknik.test/sitemap.xml
+# Sitemap konumu
+Sitemap: https://fastteknik.com/sitemap.xml
 
-# Host bilgisi (canlı domain'e geçildiğinde güncellenecek)
-# Host: https://fast-teknik.test
+# Host bilgisi
+Host: https://fastteknik.com

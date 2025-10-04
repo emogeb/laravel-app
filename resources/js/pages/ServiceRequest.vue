@@ -30,14 +30,14 @@
           :data-checked="selected === service.key"
           :class="[
             'group cursor-pointer rounded-2xl p-6 md:p-7 flex flex-col transition-all duration-300',
-            'bg-white/9 dark:bg-white/9 backdrop-blur-sm shadow-lg',
-            'ring-1 ring-white/10 hover:ring-white/20',
+            'bg-white/80 dark:bg-white/9 backdrop-blur-sm shadow-lg',
+            'ring-1 ring-gray-200 dark:ring-white/10 hover:ring-blue-300 dark:hover:ring-white/20',
             selected === service.key 
-              ? 'ring-2 ring-blue-400' 
+              ? 'ring-2 ring-blue-500' 
               : '',
             'relative overflow-hidden'
           ]"
-          :style="selected === service.key ? 'background: linear-gradient(180deg, rgba(59,130,246,.08), transparent), rgba(255,255,255,.08);' : ''"
+          :style="selected === service.key ? 'background: linear-gradient(180deg, rgba(59,130,246,.15), transparent), rgba(255,255,255,.9);' : ''"
         >
           <!-- Check Icon (only when selected) -->
           <div v-if="selected === service.key" class="absolute right-3 top-3 size-5 rounded-full bg-blue-500 text-white flex items-center justify-center">
@@ -62,16 +62,16 @@
 
           <!-- Service Options (Chips) -->
           <div v-if="selected === service.key" class="w-full mt-4">
-            <div class="flex flex-wrap gap-2 justify-center">
+            <div class="flex flex-wrap gap-2.5 justify-center">
               <button
                 v-for="option in service.options"
                 :key="option.id"
                 @click.stop="selectOption(option.id)"
                 :class="[
-                  'text-xs px-2.5 py-1 rounded-xl font-medium transition-all duration-200',
+                  'text-sm px-3.5 py-1.5 rounded-xl font-semibold transition-all duration-200',
                   selectedOption === option.id
-                    ? 'bg-blue-500 text-white ring-1 ring-blue-400'
-                    : 'bg-white/10 text-slate-200 ring-1 ring-white/15 hover:bg-white/20'
+                    ? 'bg-blue-600 text-white ring-2 ring-blue-500 shadow-lg scale-105'
+                    : 'bg-gray-200 dark:bg-white/10 text-gray-900 dark:text-slate-200 ring-1 ring-gray-300 dark:ring-white/15 hover:bg-gray-300 dark:hover:bg-white/20 hover:scale-105'
                 ]"
               >
                 {{ option.label }}
@@ -81,7 +81,7 @@
         </div>
       </div>
 
-      <!-- Continue Button -->
+      <!-- Continue Button (Desktop only) -->
       <Transition
         enter-active-class="transition-opacity duration-300"
         enter-from-class="opacity-0"
@@ -90,10 +90,10 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-        <div v-if="selected && selectedOption" class="flex justify-center">
+        <div v-if="selected && selectedOption" class="hidden md:flex justify-center">
           <button
             @click="handleContinue"
-            class="inline-flex items-center justify-center px-6 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-400 text-white font-semibold shadow-lg transition-all duration-300 hover:scale-105"
+            class="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xl transition-all duration-300 hover:scale-105"
           >
             Devam Et
           </button>
@@ -139,8 +139,8 @@ const services = [
     benefits: 'LNB/Çanak ayar · Sinyal ölçümü',
     icon: GlobeAltIcon,
     options: [
-      { id: 'satellite_ariza', label: 'Anten Arıza' },
-      { id: 'satellite_ayar', label: 'Uydu Ayarı' }
+      { id: 'satellite_ariza', label: 'Arıza' },
+      { id: 'satellite_ayar', label: 'Kurulum' }
     ]
   },
 ];
@@ -156,6 +156,11 @@ function selectService(key) {
 
 function selectOption(optionId) {
   selectedOption.value = optionId;
+  
+  // Mobil cihazlarda (768px altı) direkt forma yönlendir
+  if (window.innerWidth < 768) {
+    handleContinue();
+  }
 }
 
 function handleMainButton() {

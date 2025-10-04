@@ -57,13 +57,13 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         <!-- Form Column -->
         <div class="lg:col-span-8">
-          <div class="rounded-2xl bg-white/6 dark:bg-white/6 ring-1 ring-white/10 backdrop-blur p-6 md:p-8">
+          <div class="rounded-2xl bg-white/80 dark:bg-white/6 ring-1 ring-gray-200 dark:ring-white/10 backdrop-blur p-6 md:p-8">
             <form @submit.prevent="handleSubmit" :aria-busy="form.processing">
               <!-- Step 1: İletişim Bilgileri -->
               <div v-show="currentStep === 0" class="space-y-6">
                 <div>
-                  <h3 class="mb-2 text-sm font-semibold text-slate-200">İletişim Bilgileri</h3>
-                  <div class="h-px bg-white/10 mb-6"></div>
+                  <h3 class="mb-2 text-sm font-semibold text-gray-900 dark:text-slate-200">İletişim Bilgileri</h3>
+                  <div class="h-px bg-gray-200 dark:bg-white/10 mb-6"></div>
 
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
@@ -112,19 +112,43 @@
                       <label for="phone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Telefon <span class="text-red-500">*</span>
                       </label>
-                      <input 
-                        id="phone"
-                        type="tel" 
-                        v-model="form.phone"
-                        autocomplete="tel"
-                        placeholder="+90 (5XX) XXX XX XX"
-                        :aria-invalid="!!form.errors.phone"
-                        :aria-describedby="form.errors.phone ? 'phone-error' : undefined"
-                        @blur="validateField('phone')"
-                        class="form-input"
-                        :class="{ 'ring-red-500/60': form.errors.phone }"
-                        required
-                      >
+                      <div class="flex gap-3">
+                        <select 
+                          v-model="countryCode"
+                          @change="updateFullPhone"
+                          class="form-input form-select"
+                          style="width: 35%;"
+                          :class="{ 'ring-red-500/60': form.errors.phone }"
+                        >
+                          <option value="+90">🇹🇷 +90</option>
+                          <option value="+1">🇺🇸 +1</option>
+                          <option value="+44">🇬🇧 +44</option>
+                          <option value="+49">🇩🇪 +49</option>
+                          <option value="+33">🇫🇷 +33</option>
+                          <option value="+7">🇷🇺 +7</option>
+                          <option value="+86">🇨🇳 +86</option>
+                          <option value="+81">🇯🇵 +81</option>
+                          <option value="+82">🇰🇷 +82</option>
+                          <option value="+91">🇮🇳 +91</option>
+                          <option value="+966">🇸🇦 +966</option>
+                          <option value="+971">🇦🇪 +971</option>
+                        </select>
+                        <input 
+                          id="phone"
+                          type="tel" 
+                          v-model="phoneNumber"
+                          @input="updateFullPhone"
+                          autocomplete="tel"
+                          placeholder="(545) 123 45 67"
+                          :aria-invalid="!!form.errors.phone"
+                          :aria-describedby="form.errors.phone ? 'phone-error' : undefined"
+                          @blur="validateField('phone')"
+                          class="form-input"
+                          style="width: calc(65% - 0.75rem);"
+                          :class="{ 'ring-red-500/60': form.errors.phone }"
+                          required
+                        >
+                      </div>
                       <p v-if="form.errors.phone" id="phone-error" class="mt-2 text-sm text-red-500/80">
                         {{ form.errors.phone }}
                       </p>
@@ -136,8 +160,8 @@
               <!-- Step 2: Adres Bilgileri -->
               <div v-show="currentStep === 1" class="space-y-6">
                 <div>
-                  <h3 class="mb-2 text-sm font-semibold text-slate-200">Adres Bilgileri</h3>
-                  <div class="h-px bg-white/10 mb-6"></div>
+                  <h3 class="mb-2 text-sm font-semibold text-gray-900 dark:text-slate-200">Adres Bilgileri</h3>
+                  <div class="h-px bg-gray-200 dark:bg-white/10 mb-6"></div>
 
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="md:col-span-2">
@@ -191,7 +215,7 @@
                         type="text" 
                         value="İzmir"
                         autocomplete="address-level1"
-                        class="form-input bg-gray-100 dark:bg-white/5"
+                        class="form-input bg-gray-100 dark:bg-white/5 text-gray-900 dark:text-white"
                         disabled
                       >
                     </div>
@@ -202,8 +226,8 @@
               <!-- Step 3: Hizmet Detayı -->
               <div v-show="currentStep === 2" class="space-y-6">
                 <div>
-                  <h3 class="mb-2 text-sm font-semibold text-slate-200">Talep Detayları</h3>
-                  <div class="h-px bg-white/10 mb-6"></div>
+                  <h3 class="mb-2 text-sm font-semibold text-gray-900 dark:text-slate-200">Talep Detayları</h3>
+                  <div class="h-px bg-gray-200 dark:bg-white/10 mb-6"></div>
 
                   <div class="space-y-6">
                     <div>
@@ -231,7 +255,7 @@
                       <label for="product" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                         Ürün Seç (Opsiyonel)
                       </label>
-                      <select id="product" v-model="form.product_id" class="form-input">
+                      <select id="product" v-model="form.product_id" class="form-input form-select">
                         <option value="">Ürün seçiniz</option>
                         <option v-for="product in products" :key="product.id" :value="product.id">
                           {{ product.name }}
@@ -245,50 +269,50 @@
               <!-- Step 4: Onay -->
               <div v-show="currentStep === 3" class="space-y-6">
                 <div>
-                  <h3 class="mb-2 text-sm font-semibold text-slate-200">Bilgileri Onaylayın</h3>
-                  <div class="h-px bg-white/10 mb-6"></div>
+                  <h3 class="mb-2 text-sm font-semibold text-gray-900 dark:text-slate-200">Bilgileri Onaylayın</h3>
+                  <div class="h-px bg-gray-200 dark:bg-white/10 mb-6"></div>
 
                   <div class="space-y-4 text-sm">
-                    <div class="bg-white/5 rounded-xl p-4 space-y-3">
-                      <div class="flex justify-between">
-                        <span class="text-gray-400">Ad Soyad:</span>
-                        <span class="text-white font-medium">{{ form.name }}</span>
+                    <div class="bg-gray-100 dark:bg-white/5 rounded-xl p-4 space-y-3">
+                      <div class="flex gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Ad Soyad:</span>
+                        <span class="text-gray-900 dark:text-white font-medium">{{ form.name }}</span>
                       </div>
-                      <div class="flex justify-between">
-                        <span class="text-gray-400">Email:</span>
-                        <span class="text-white font-medium">{{ form.email }}</span>
+                      <div class="flex gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Email:</span>
+                        <span class="text-gray-900 dark:text-white font-medium">{{ form.email }}</span>
                       </div>
-                      <div class="flex justify-between">
-                        <span class="text-gray-400">Telefon:</span>
-                        <span class="text-white font-medium">{{ form.phone }}</span>
+                      <div class="flex gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Telefon:</span>
+                        <span class="text-gray-900 dark:text-white font-medium">{{ form.phone }}</span>
                       </div>
-                      <div class="flex justify-between">
-                        <span class="text-gray-400">Adres:</span>
-                        <span class="text-white font-medium text-right">{{ form.address }}, {{ form.district }}</span>
+                      <div class="flex gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Hizmet:</span>
+                        <span class="text-gray-900 dark:text-white font-medium">{{ selectedService?.title }}</span>
                       </div>
-                      <div class="flex justify-between">
-                        <span class="text-gray-400">Hizmet:</span>
-                        <span class="text-white font-medium">{{ selectedService?.title }}</span>
+                      <div class="flex gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Seçenek:</span>
+                        <span class="text-gray-900 dark:text-white font-medium">{{ selectedOption?.label }}</span>
                       </div>
-                      <div class="flex justify-between">
-                        <span class="text-gray-400">Seçenek:</span>
-                        <span class="text-white font-medium">{{ selectedOption?.label }}</span>
+                      <div v-if="selectedProduct" class="flex gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Ürün:</span>
+                        <span class="text-gray-900 dark:text-white font-medium">{{ selectedProduct?.name }}</span>
                       </div>
-                      <div v-if="selectedProduct" class="flex justify-between">
-                        <span class="text-gray-400">Ürün:</span>
-                        <span class="text-white font-medium text-right">{{ selectedProduct?.name }}</span>
+                      <div class="flex gap-2">
+                        <span class="text-gray-600 dark:text-gray-400">Adres:</span>
+                        <span class="text-gray-900 dark:text-white font-medium">{{ form.address }}, {{ form.district }}</span>
                       </div>
                     </div>
 
                     <!-- Trust Badges -->
                     <div class="flex flex-wrap gap-2 pt-4">
-                      <span class="rounded-full text-xs px-2.5 py-1 bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20">
+                      <span class="rounded-full text-xs px-2.5 py-1 bg-emerald-100 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-300/40 dark:ring-emerald-300/20">
                         Aynı Gün Keşif
                       </span>
-                      <span class="rounded-full text-xs px-2.5 py-1 bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20">
+                      <span class="rounded-full text-xs px-2.5 py-1 bg-emerald-100 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-300/40 dark:ring-emerald-300/20">
                         2 Yıl İşçilik Garantisi
                       </span>
-                      <span class="rounded-full text-xs px-2.5 py-1 bg-emerald-400/10 text-emerald-300 ring-1 ring-emerald-300/20">
+                      <span class="rounded-full text-xs px-2.5 py-1 bg-emerald-100 dark:bg-emerald-400/10 text-emerald-700 dark:text-emerald-300 ring-1 ring-emerald-300/40 dark:ring-emerald-300/20">
                         Profesyonel Hizmet
                       </span>
                     </div>
@@ -297,12 +321,12 @@
               </div>
 
               <!-- Navigation Buttons (Desktop) -->
-              <div class="hidden md:flex items-center justify-between mt-8 pt-6 border-t border-white/10">
+              <div class="hidden md:flex items-center justify-between mt-8 pt-6 border-t border-gray-200 dark:border-white/10">
                 <button
                   v-if="currentStep > 0"
                   type="button"
                   @click="prevStep"
-                  class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                  class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                   <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -313,7 +337,7 @@
                   v-else
                   :href="route('service-request')"
                   rel="prev"
-                  class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-gray-300 hover:text-white transition-colors"
+                  class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
                   <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
@@ -354,45 +378,45 @@
 
         <!-- Summary Column (Desktop only) -->
         <div class="hidden lg:block lg:col-span-4">
-          <div class="sticky top-20 rounded-2xl bg-white/6 dark:bg-white/6 ring-1 ring-white/10 backdrop-blur p-6">
-            <h3 class="text-lg font-semibold text-white mb-4">Seçiminiz</h3>
+          <div class="sticky top-20 rounded-2xl bg-white/80 dark:bg-white/6 ring-1 ring-gray-200 dark:ring-white/10 backdrop-blur p-6">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Seçiminiz</h3>
             
             <div class="space-y-4">
               <div class="flex items-start gap-3">
-                <component :is="selectedService?.icon" class="w-8 h-8 text-blue-400 flex-shrink-0" />
+                <component :is="selectedService?.icon" class="w-8 h-8 text-blue-600 dark:text-blue-400 flex-shrink-0" />
                 <div class="flex-1">
-                  <p class="text-sm font-medium text-white">{{ selectedService?.title }}</p>
-                  <p class="text-xs text-gray-400 mt-1">{{ selectedOption?.label }}</p>
+                  <p class="text-sm font-medium text-gray-900 dark:text-white">{{ selectedService?.title }}</p>
+                  <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">{{ selectedOption?.label }}</p>
                 </div>
               </div>
 
-              <div class="h-px bg-white/10"></div>
+              <div class="h-px bg-gray-200 dark:bg-white/10"></div>
 
               <div class="space-y-2 text-sm">
-                <div class="flex items-center gap-2 text-gray-300">
-                  <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                  <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   Tahmini Süre: 2-3 saat
                 </div>
-                <div class="flex items-center gap-2 text-gray-300">
-                  <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                  <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                   </svg>
                   Randevu: 24 saat içinde
                 </div>
-                <div class="flex items-center gap-2 text-gray-300">
-                  <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+                  <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                   Ücretsiz Keşif
                 </div>
               </div>
 
-              <div class="h-px bg-white/10"></div>
+              <div class="h-px bg-gray-200 dark:bg-white/10"></div>
 
-              <div class="bg-blue-500/10 rounded-lg p-3">
-                <p class="text-xs text-blue-300">
+              <div class="bg-blue-100 dark:bg-blue-500/10 rounded-lg p-3">
+                <p class="text-xs text-blue-700 dark:text-blue-300">
                   ℹ️ Talebiniz alındıktan sonra aynı gün içerisinde size dönüş yapılacaktır.
                 </p>
               </div>
@@ -402,35 +426,35 @@
       </div>
 
       <!-- Selection Summary (Mobile only) -->
-      <div class="lg:hidden mt-8 rounded-2xl bg-white/6 dark:bg-white/6 ring-1 ring-white/10 backdrop-blur p-5">
-        <h3 class="text-base font-semibold text-white mb-3">Seçiminiz</h3>
+      <div class="lg:hidden mt-8 rounded-2xl bg-white/80 dark:bg-white/6 ring-1 ring-gray-200 dark:ring-white/10 backdrop-blur p-5">
+        <h3 class="text-base font-semibold text-gray-900 dark:text-white mb-3">Seçiminiz</h3>
         
         <div class="space-y-3">
           <div class="flex items-start gap-3">
-            <component :is="selectedService?.icon" class="w-8 h-8 text-blue-400 flex-shrink-0" />
+            <component :is="selectedService?.icon" class="w-8 h-8 text-blue-600 dark:text-blue-400 flex-shrink-0" />
             <div class="flex-1">
-              <p class="text-sm font-medium text-white">{{ selectedService?.title }}</p>
-              <p class="text-xs text-gray-400 mt-1">{{ selectedOption?.label }}</p>
+              <p class="text-sm font-medium text-gray-900 dark:text-white">{{ selectedService?.title }}</p>
+              <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">{{ selectedOption?.label }}</p>
             </div>
           </div>
 
-          <div class="h-px bg-white/10"></div>
+          <div class="h-px bg-gray-200 dark:bg-white/10"></div>
 
           <div class="space-y-2 text-xs">
-            <div class="flex items-center gap-2 text-gray-300">
-              <svg class="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Tahmini Süre: 2-3 saat
             </div>
-            <div class="flex items-center gap-2 text-gray-300">
-              <svg class="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
               Randevu: 24 saat içinde
             </div>
-            <div class="flex items-center gap-2 text-gray-300">
-              <svg class="w-4 h-4 text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="flex items-center gap-2 text-gray-700 dark:text-gray-300">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Ücretsiz Keşif
@@ -441,13 +465,13 @@
     </div>
 
     <!-- Sticky Mobile CTA -->
-    <div class="md:hidden fixed bottom-3 inset-x-0 mx-3 rounded-2xl bg-white/10 backdrop-blur p-2 ring-1 ring-white/15 z-50">
+    <div class="md:hidden fixed bottom-3 inset-x-0 mx-3 rounded-2xl bg-white/90 dark:bg-white/10 backdrop-blur p-2 ring-1 ring-gray-300 dark:ring-white/15 z-50">
       <div class="flex items-center gap-2">
         <button
           v-if="currentStep > 0"
           type="button"
           @click="prevStep"
-          class="flex-shrink-0 px-4 py-2 text-sm font-medium text-white"
+          class="flex-shrink-0 px-4 py-2 text-sm font-medium text-gray-700 dark:text-white"
         >
           ← Geri
         </button>
@@ -540,6 +564,8 @@ const steps = [
 ];
 
 const currentStep = ref(0);
+const countryCode = ref('+90');
+const phoneNumber = ref('');
 
 const selectedService = computed(() => {
   return services.find(service => service.key === props.serviceKey);
@@ -565,6 +591,22 @@ const form = useForm({
   option_id: props.optionId,
   product_id: '',
 });
+
+// Initialize phone number from userData if exists
+if (props.userData.phone) {
+  // Extract country code and number
+  const phoneMatch = props.userData.phone.match(/^(\+\d+)\s*(.*)$/);
+  if (phoneMatch) {
+    countryCode.value = phoneMatch[1];
+    phoneNumber.value = phoneMatch[2];
+  } else {
+    phoneNumber.value = props.userData.phone;
+  }
+}
+
+const updateFullPhone = () => {
+  form.phone = `${countryCode.value} ${phoneNumber.value}`.trim();
+};
 
 const canProceed = computed(() => {
   if (currentStep.value === 0) {
@@ -623,24 +665,64 @@ const handleSubmit = () => {
   width: 100%;
   border-radius: 0.5rem;
   border: 0;
-  background-color: rgba(255, 255, 255, 0.05);
   padding: 0.625rem 1rem;
-  color: white;
   outline: none;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
   transition: all 0.2s;
 }
 
+/* Light mode styles */
+.form-input {
+  background-color: rgba(0, 0, 0, 0.05);
+  color: rgb(17, 24, 39); /* gray-900 */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset;
+}
+
 .form-input::placeholder {
-  color: rgb(156, 163, 175);
+  color: rgb(156, 163, 175); /* gray-400 */
 }
 
 .form-input:focus {
   box-shadow: 0 0 0 2px rgb(59, 130, 246) inset;
 }
 
+/* Dark mode styles */
+:global(.dark) .form-input {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: white;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+:global(.dark) .form-input::placeholder {
+  color: rgb(156, 163, 175);
+}
+
 .form-input:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Select element specific styles */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+:global(.dark) .form-select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239ca3af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+}
+
+/* Option elements */
+.form-select option {
+  background-color: white;
+  color: rgb(17, 24, 39);
+}
+
+:global(.dark) .form-select option {
+  background-color: rgb(17, 24, 39);
+  color: white;
 }
 </style>
