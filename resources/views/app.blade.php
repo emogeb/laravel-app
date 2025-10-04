@@ -42,8 +42,15 @@
         <link rel="preconnect" href="https://cdnjs.cloudflare.com">
         <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
         
-        {{-- Preload critical font for LCP --}}
+        {{-- Preload critical fonts for LCP (both 400 and 600 weight) --}}
+        <link rel="preload" href="https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
         <link rel="preload" href="https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+        
+        {{-- Inline critical font-face for instant render --}}
+        <style>
+        @font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-400-normal.woff2) format('woff2');}
+        @font-face{font-family:'Instrument Sans';font-style:normal;font-weight:600;font-display:swap;src:url(https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-600-normal.woff2) format('woff2');}
+        </style>
         
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
         

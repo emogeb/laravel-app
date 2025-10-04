@@ -10,23 +10,8 @@
 
     <!-- Hero Section -->
     <div class="relative overflow-hidden">
-      <!-- SVG Blob Background for Hero -->
-      <div class="absolute inset-0 opacity-5 dark:opacity-10">
-        <svg viewBox="0 0 1200 800" preserveAspectRatio="none" class="w-full h-full">
-          <path d="M0,200 C300,100 600,300 900,150 C1100,50 1200,200 1200,400 L1200,800 L0,800 Z" fill="url(#heroGradient)" class="animate-pulse"></path>
-          <path d="M0,300 C400,200 700,400 1000,250 C1150,150 1200,300 1200,500 L1200,800 L0,800 Z" fill="url(#heroGradient2)" class="animate-pulse" style="animation-delay: 1s;"></path>
-          <defs>
-            <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.3" />
-              <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:0.1" />
-            </linearGradient>
-            <linearGradient id="heroGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#60A5FA;stop-opacity:0.2" />
-              <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0.05" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+      <!-- Simplified Background - No SVG for better LCP -->
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-transparent dark:from-blue-950/20"></div>
       
       <div class="max-w-7xl mx-auto">
         <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
@@ -36,7 +21,7 @@
                 <span class="block">Hızlı ve Güvenilir</span>
                 <span class="block text-blue-600 dark:text-blue-400">Teknik Servis Hizmeti</span>
               </h1>
-              <p class="mt-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+              <p class="mt-3 text-base text-gray-500 dark:text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0" style="content-visibility: auto;">
                 İzmir'de profesyonel teknik servis hizmetleri. İnternet , Kamera , Uydu ve daha birçok hizmet için güvenilir servis çözümleri.
               </p>
               <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
@@ -126,18 +111,6 @@
 
     <!-- Features Section -->
     <div class="py-12 bg-gray-50 dark:bg-gray-900 relative overflow-hidden">
-      <!-- SVG Blob Background for Features -->
-      <div class="absolute inset-0 opacity-5 dark:opacity-10">
-        <svg viewBox="0 0 800 600" preserveAspectRatio="none" class="w-full h-full">
-          <path d="M0,150 C200,50 400,200 600,100 C700,50 800,150 800,300 L800,600 L0,600 Z" fill="url(#featuresGradient)" class="animate-pulse"></path>
-          <defs>
-            <linearGradient id="featuresGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.2" />
-              <stop offset="100%" style="stop-color:#1E40AF;stop-opacity:0.1" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
       
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="lg:text-center">
