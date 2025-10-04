@@ -693,12 +693,23 @@ const handleSubmit = () => {
 /* Dark mode styles */
 :global(.dark) .form-input {
   background-color: rgba(255, 255, 255, 0.05);
-  color: white;
+  color: rgb(255, 255, 255) !important;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+  -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }
 
 :global(.dark) .form-input::placeholder {
-  color: rgb(156, 163, 175);
+  color: rgb(209, 213, 219); /* gray-300 - daha açık */
+  -webkit-text-fill-color: rgb(209, 213, 219);
+}
+
+/* Dark mode autofill override */
+:global(.dark) .form-input:-webkit-autofill,
+:global(.dark) .form-input:-webkit-autofill:hover,
+:global(.dark) .form-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: rgb(255, 255, 255) !important;
+  -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.05) inset !important;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
 }
 
 .form-input:disabled {
