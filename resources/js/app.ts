@@ -8,8 +8,8 @@ import { ZiggyVue } from 'ziggy-js';
 import { initializeTheme } from './composables/useAppearance';
 import { createHead } from '@vueuse/head';
 import { MotionPlugin } from '@vueuse/motion';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+// Lazy load AOS for better initial page load
+let AOS: any = null;
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const head = createHead();
@@ -41,21 +41,43 @@ createInertiaApp({
             .use(MotionPlugin)
             .mount(el);
 
-        // Initialize AOS after app is mounted
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true,
-            offset: 100,
-        });
-
-        // Refresh AOS on page changes using Inertia events
-        document.addEventListener('inertia:success', () => {
-            // Small delay to ensure DOM is updated
+        // Lazy load and initialize AOS after main content is rendered
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(() => {
+                import('aos').then((module) => {
+                    AOS = module.default;
+                    import('aos/dist/aos.css');
+                    AOS.init({
+                        duration: 800,
+                        easing: 'ease-in-out',
+                        once: true,
+                        offset: 100,
+                        disable: 'mobile', // Disable on mobile for better performance
+                    });
+                    
+                    // Refresh AOS on page changes using Inertia events
+                    document.addEventListener('inertia:success', () => {
+                        setTimeout(() => {
+                            AOS.refresh();
+                        }, 100);
+                    });
+                });
+            }, { timeout: 2000 });
+        } else {
+            // Fallback for browsers without requestIdleCallback
             setTimeout(() => {
-                AOS.refresh();
-            }, 100);
-        });
+                import('aos').then((module) => {
+                    AOS = module.default;
+                    import('aos/dist/aos.css');
+                    AOS.init({
+                        duration: 800,
+                        easing: 'ease-in-out',
+                        once: true,
+                        offset: 100,
+                    });
+                });
+            }, 1000);
+        }
     },
     progress: {
         color: '#4B5563',

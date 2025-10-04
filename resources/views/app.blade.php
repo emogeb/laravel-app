@@ -37,10 +37,13 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
         {{-- Resource Hints for Performance --}}
-        <link rel="preconnect" href="https://fonts.bunny.net">
+        <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
         <link rel="dns-prefetch" href="https://fonts.bunny.net">
         <link rel="preconnect" href="https://cdnjs.cloudflare.com">
         <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+        
+        {{-- Preload critical font for LCP --}}
+        <link rel="preload" href="https://fonts.bunny.net/instrument-sans/files/instrument-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
         
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600&display=swap" rel="stylesheet" />
         
