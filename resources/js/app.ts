@@ -1,6 +1,6 @@
 import '../css/app.css';
 
-import { createInertiaApp } from '@inertiajs/vue3';
+import { createInertiaApp, router } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import type { DefineComponent } from 'vue';
 import { createApp, h } from 'vue';
@@ -10,6 +10,13 @@ import { createHead } from '@vueuse/head';
 import { MotionPlugin } from '@vueuse/motion';
 // Lazy load AOS for better initial page load
 let AOS: any = null;
+
+// Declare gtag for TypeScript
+declare global {
+    interface Window {
+        gtag?: (...args: any[]) => void;
+    }
+}
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 const head = createHead();
@@ -82,6 +89,25 @@ createInertiaApp({
     progress: {
         color: '#4B5563',
     },
+});
+
+// Google Analytics 4 - Track page views on SPA navigation
+router.on('navigate', (event) => {
+    if (typeof window.gtag === 'function') {
+        // Get the full URL path
+        const url = event.detail.page.url;
+        
+        window.gtag('config', 'G-2DW9PGYTDR', {
+            page_path: url,
+            page_title: document.title,
+        });
+        
+        // Also send a page_view event for better tracking
+        window.gtag('event', 'page_view', {
+            page_path: url,
+            page_title: document.title,
+        });
+    }
 });
 
 // This will set light / dark mode on page load...
