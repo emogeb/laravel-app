@@ -276,6 +276,25 @@
                   <h3 class="mb-2 text-sm font-semibold text-gray-900 dark:text-slate-200">Bilgileri Onaylayın</h3>
                   <div class="h-px bg-gray-200 dark:bg-white/10 mb-6"></div>
 
+                  <!-- Important Warning for Request Number -->
+                  <div class="mb-6 bg-gradient-to-r from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border-2 border-amber-400 dark:border-amber-600/50 rounded-xl p-4 shadow-md">
+                    <div class="flex items-start gap-3">
+                      <div class="flex-shrink-0">
+                        <svg class="w-6 h-6 text-amber-600 dark:text-amber-400 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/>
+                        </svg>
+                      </div>
+                      <div class="flex-1">
+                        <p class="text-base font-bold text-amber-900 dark:text-amber-200 mb-1">
+                          ⚠️ Önemli Uyarı!
+                        </p>
+                        <p class="text-sm text-amber-800 dark:text-amber-300 font-semibold leading-relaxed">
+                          Talebiniz oluşturulduktan sonra size bir <span class="font-bold underline decoration-amber-600 dark:decoration-amber-400">hizmet talep numarası</span> verilecektir. Lütfen bu numarayı kaydedin! Servis talebinizin durumunu sorgulamak için bu numaraya ihtiyacınız olacak.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="space-y-4 text-sm">
                     <div class="bg-gray-100 dark:bg-white/5 rounded-xl p-4 space-y-3">
                       <div class="flex gap-2">
@@ -828,6 +847,16 @@ const handleSubmit = () => {
   -webkit-text-fill-color: rgb(209, 213, 219);
 }
 
+/* Light mode autofill override - sarı arka planı kaldır */
+.form-input:-webkit-autofill,
+.form-input:-webkit-autofill:hover,
+.form-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: rgb(17, 24, 39) !important; /* Koyu yazı */
+  -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.05) inset !important; /* Light mode arka plan */
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1) inset !important;
+  transition: background-color 5000s ease-in-out 0s; /* Sarı rengi geciktir */
+}
+
 /* Dark mode autofill override */
 :global(.dark) .form-input:-webkit-autofill,
 :global(.dark) .form-input:-webkit-autofill:hover,
@@ -835,11 +864,32 @@ const handleSubmit = () => {
   -webkit-text-fill-color: rgb(255, 255, 255) !important;
   -webkit-box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.05) inset !important;
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+  transition: background-color 5000s ease-in-out 0s;
 }
 
 .form-input:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* Validation error durumunda da yazı rengini koru */
+.form-input:invalid {
+  color: rgb(17, 24, 39) !important; /* Light mode için */
+}
+
+:global(.dark) .form-input:invalid {
+  color: rgb(255, 255, 255) !important; /* Dark mode için */
+  -webkit-text-fill-color: rgb(255, 255, 255) !important;
+}
+
+/* Browser'ın native validation stillerini override et */
+.form-input:user-invalid {
+  color: rgb(17, 24, 39) !important;
+}
+
+:global(.dark) .form-input:user-invalid {
+  color: rgb(255, 255, 255) !important;
+  -webkit-text-fill-color: rgb(255, 255, 255) !important;
 }
 
 /* Select element specific styles */
