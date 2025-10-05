@@ -9,7 +9,7 @@
         <link rel="icon" type="image/svg+xml" href="/fast-favicon/favicon.svg" />
         <link rel="shortcut icon" href="/fast-favicon/favicon.ico" />
         <link rel="apple-touch-icon" sizes="180x180" href="/fast-favicon/apple-touch-icon.png" />
-        <link rel="manifest" href="/fast-favicon/site.webmanifest" />
+        <link rel="manifest" href="/site.webmanifest" />
 
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
