@@ -10,6 +10,7 @@ import { createHead } from '@vueuse/head';
 import { MotionPlugin } from '@vueuse/motion';
 // Lazy load AOS for better initial page load
 let AOS: any = null;
+let aosInitialized = false;
 
 // Declare gtag for TypeScript
 declare global {
@@ -59,10 +60,26 @@ createInertiaApp({
             .use(MotionPlugin)
             .mount(el);
 
-        // Lazy load and initialize AOS after main content is rendered
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(() => {
+        const scheduleAOSInit = () => {
+            const isMobileDevice = typeof window !== 'undefined'
+                ? window.matchMedia('(max-width: 767px)').matches
+                : false;
+
+            if (isMobileDevice) {
+                document.body.classList.add('aos-disabled');
+                return;
+            }
+
+            const loadAOS = () => {
+                if (aosInitialized) {
+                    return;
+                }
+
                 import('aos').then((module) => {
+                    if (aosInitialized) {
+                        return;
+                    }
+
                     AOS = module.default;
                     import('aos/dist/aos.css');
                     AOS.init({
@@ -70,32 +87,30 @@ createInertiaApp({
                         easing: 'ease-in-out',
                         once: true,
                         offset: 100,
-                        disable: 'mobile', // Disable on mobile for better performance
                     });
-                    
-                    // Refresh AOS on page changes using Inertia events
+
                     document.addEventListener('inertia:success', () => {
+                        if (!AOS) {
+                            return;
+                        }
+
                         setTimeout(() => {
                             AOS.refresh();
                         }, 100);
                     });
+
+                    aosInitialized = true;
                 });
-            }, { timeout: 2000 });
-        } else {
-            // Fallback for browsers without requestIdleCallback
-            setTimeout(() => {
-                import('aos').then((module) => {
-                    AOS = module.default;
-                    import('aos/dist/aos.css');
-                    AOS.init({
-                        duration: 800,
-                        easing: 'ease-in-out',
-                        once: true,
-                        offset: 100,
-                    });
-                });
-            }, 1000);
-        }
+            };
+
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(loadAOS, { timeout: 2000 });
+            } else {
+                setTimeout(loadAOS, 1000);
+            }
+        };
+
+        scheduleAOSInit();
     },
     progress: {
         color: '#4B5563',

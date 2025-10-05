@@ -3,8 +3,8 @@
     <TopBar />
     <SEO
       title="Fast Teknik | İzmir'in Güvenilir Teknik Servis Çözümleri"
-      description="Fast Teknik, İzmir'de profesyonel teknik servis hizmetleri sunmaktadır. Beyaz eşya, klima, kombi ve daha birçok ürün için güvenilir servis çözümleri."
-      keywords="teknik servis, izmir teknik servis, beyaz eşya servisi, klima servisi, kombi servisi"
+      description="Fast Teknik, İzmir'de profesyonel teknik servis hizmetleri sunmaktadır. Kamera sistemleri, internet altyapısı, uydu sistemleri ve daha fazlası için güvenilir servis çözümleri."
+      keywords="teknik servis, izmir teknik servis, kamera sistemleri, internet servisi, uydu sistemleri"
       url="https://fastteknik.com"
     />
 
@@ -26,12 +26,12 @@
               </p>
               <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div class="rounded-md shadow">
-                  <Link :href="route('services.index')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                  <Link :href="route('services.index')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 md:py-4 md:text-lg md:px-10">
                     Hizmetlerimiz
                   </Link>
                 </div>
                 <div class="mt-3 sm:mt-0 sm:ml-3">
-                  <Link :href="route('service-request')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 bg-blue-100 hover:bg-blue-200 md:py-4 md:text-lg md:px-10">
+                  <Link :href="route('service-request')" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-blue-700 dark:text-blue-100 bg-blue-100 dark:bg-blue-900/30 hover:bg-blue-200 dark:hover:bg-blue-800/40 md:py-4 md:text-lg md:px-10">
                     Servis Talebi Oluştur
                   </Link>
                 </div>

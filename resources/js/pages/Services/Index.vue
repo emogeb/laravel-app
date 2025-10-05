@@ -132,13 +132,13 @@
                     <!-- Primary CTA -->
                     <button 
                       @click.prevent="$inertia.visit(route('service-request'))"
-                      class="text-sm/6 font-semibold text-[#3B82F6] dark:text-blue-400 hover:text-[#2563EB] hover:underline transition-all duration-300 cursor-pointer">
+                      class="text-sm/6 font-semibold text-[#2563EB] dark:text-[#3B82F6] hover:text-[#1E40AF] dark:hover:text-[#60A5FA] hover:underline transition-all duration-300 cursor-pointer">
                       Teklif Al
                       <span class="inline-block transition-transform duration-300 hover:translate-x-1 ml-1">&rarr;</span>
                     </button>
                     
                     <!-- Secondary CTA -->
-                    <span class="text-sm/6 font-semibold text-[#3B82F6] dark:text-blue-400 group-hover:text-[#2563EB] group-hover:underline transition-all duration-300 cursor-pointer">
+                    <span class="text-sm/6 font-semibold text-[#2563EB] dark:text-[#3B82F6] group-hover:text-[#1E40AF] dark:group-hover:text-[#60A5FA] group-hover:underline transition-all duration-300 cursor-pointer">
                       Detayları Gör
                     </span>
                   </div>

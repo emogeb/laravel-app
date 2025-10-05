@@ -185,3 +185,18 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Fix AOS visibility issues on mobile */
+@media (max-width: 767px) {
+  [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+  
+  body.aos-disabled [data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
