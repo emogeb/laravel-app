@@ -499,13 +499,91 @@
         </button>
       </div>
     </div>
+
+    <!-- Success Modal for Guest Users -->
+    <div v-if="showSuccessModal && !$page.props.auth.user" class="fixed inset-0 z-50 overflow-y-auto" @click.self="closeSuccessModal">
+      <div class="flex items-center justify-center min-h-screen px-4 py-8">
+        <!-- Background overlay -->
+        <div class="fixed inset-0 transition-opacity bg-gray-900/80 backdrop-blur-sm" @click="closeSuccessModal"></div>
+
+        <!-- Modal content -->
+        <div class="relative w-full max-w-md transform transition-all animate-fadeIn">
+          <div class="relative bg-gradient-to-br from-white to-blue-50 dark:from-gray-800 dark:to-gray-900 rounded-3xl shadow-2xl ring-2 ring-blue-500/20 dark:ring-blue-400/30 overflow-hidden">
+            <!-- Success Icon Header -->
+            <div class="relative bg-gradient-to-r from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 px-6 py-8 text-center">
+              <div class="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-4 ring-4 ring-white/30">
+                <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                </svg>
+              </div>
+              <h3 class="text-2xl font-bold text-white mb-2">
+                Talebiniz Oluşturuldu!
+              </h3>
+              <p class="text-blue-100 text-sm">
+                En kısa sürede sizinle iletişime geçeceğiz
+              </p>
+            </div>
+
+            <!-- Request Number Section -->
+            <div class="px-6 py-8">
+              <div class="bg-gradient-to-br from-blue-500/10 to-blue-600/10 dark:from-blue-400/10 dark:to-blue-500/10 rounded-2xl p-6 border-2 border-blue-500/30 dark:border-blue-400/30 mb-6">
+                <p class="text-sm font-semibold text-gray-600 dark:text-gray-400 text-center mb-3 uppercase tracking-wide">
+                  Talep Numaranız
+                </p>
+                <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                  <p class="text-3xl font-bold text-blue-600 dark:text-blue-400 text-center font-mono tracking-wider">
+                    {{ successData?.request_number }}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Important Message -->
+              <div class="bg-amber-50 dark:bg-amber-900/20 border-2 border-amber-200 dark:border-amber-700/50 rounded-xl p-4 mb-6">
+                <div class="flex items-start gap-3">
+                  <svg class="w-6 h-6 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                  </svg>
+                  <div class="flex-1">
+                    <p class="text-sm font-semibold text-amber-900 dark:text-amber-200 mb-1">
+                      Önemli!
+                    </p>
+                    <p class="text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
+                      Lütfen bu talep numarasını kaydedin. Servis talebinizin durumunu sorgulamak için bu numaraya ihtiyacınız olacak.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="flex flex-col gap-3">
+                <button
+                  @click="copyRequestNumber"
+                  class="w-full flex items-center justify-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                  {{ copyButtonText }}
+                </button>
+                <button
+                  @click="closeSuccessModal"
+                  class="w-full px-6 py-3 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-200 font-semibold rounded-xl transition-all duration-300"
+                >
+                  Anladım
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { Link, useForm } from '@inertiajs/vue3';
+import { Link, useForm, usePage } from '@inertiajs/vue3';
 import { CameraIcon, WifiIcon, GlobeAltIcon } from '@heroicons/vue/24/outline';
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import TopBar from '@/components/TopBar.vue';
 import SEO from '@/components/SEO.vue';
 
@@ -649,10 +727,57 @@ const prevStep = () => {
   }
 };
 
+// Success modal state
+const page = usePage();
+const showSuccessModal = ref(false);
+const successData = ref(null);
+const copyButtonText = ref('Numarayı Kopyala');
+
+// Watch for flash success message
+watch(() => page.props.flash?.success, (value) => {
+  if (value && !page.props.auth.user) {
+    successData.value = value;
+    showSuccessModal.value = true;
+  }
+}, { immediate: true });
+
+const closeSuccessModal = () => {
+  showSuccessModal.value = false;
+  successData.value = null;
+};
+
+const copyRequestNumber = async () => {
+  if (!successData.value?.request_number) return;
+  
+  try {
+    await navigator.clipboard.writeText(successData.value.request_number);
+    copyButtonText.value = '✓ Kopyalandı!';
+    setTimeout(() => {
+      copyButtonText.value = 'Numarayı Kopyala';
+    }, 2000);
+  } catch (err) {
+    console.error('Kopyalama hatası:', err);
+    // Fallback for older browsers
+    const textarea = document.createElement('textarea');
+    textarea.value = successData.value.request_number;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+    copyButtonText.value = '✓ Kopyalandı!';
+    setTimeout(() => {
+      copyButtonText.value = 'Numarayı Kopyala';
+    }, 2000);
+  }
+};
+
 const handleSubmit = () => {
   form.post(route('service-requests.store'), {
     onSuccess: () => {
       form.reset();
+      // Modal will be shown by the watcher when flash message is received
     },
     onError: (errors) => {
       console.error('Form submission error:', errors);
@@ -740,5 +865,21 @@ const handleSubmit = () => {
 :global(.dark) .form-select option {
   background-color: rgb(17, 24, 39);
   color: white;
+}
+
+/* Fade-in animation for success modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
 }
 </style>

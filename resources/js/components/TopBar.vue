@@ -8,16 +8,32 @@
             Fast Teknik
           </Link>
           <!-- Ana Navigasyon Linkleri - Desktop -->
-          <div class="hidden md:block ml-10 space-x-4">
+          <div class="hidden md:flex ml-10 space-x-4 items-center">
             <Link :href="route('home')" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
               Ana Sayfa
             </Link>
             <Link :href="route('services.index')" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
               Hizmetler
             </Link>
-            <Link :href="route('service-request')" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
-              Servis Talebi
-            </Link>
+            <!-- Servis Talebi Dropdown -->
+            <div class="relative" @mouseenter="showServicesDropdown = true" @mouseleave="showServicesDropdown = false">
+              <button class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium flex items-center">
+                Servis Talebi
+                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div v-show="showServicesDropdown" class="absolute left-0 mt-0 w-56 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5 z-50">
+                <div class="py-1">
+                  <Link :href="route('service-request')" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                    Talep Oluştur
+                  </Link>
+                  <Link :href="route('service-request.query')" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600">
+                    Talep Sorgula
+                  </Link>
+                </div>
+              </div>
+            </div>
             <Link :href="route('internet-speed-test')" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 rounded-md text-sm font-medium">
               Hız Testi
             </Link>
@@ -81,9 +97,23 @@
         <Link :href="route('services.index')" @click="closeMobileMenu" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium">
           Hizmetler
         </Link>
-        <Link :href="route('service-request')" @click="closeMobileMenu" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium">
-          Servis Talebi
-        </Link>
+        <!-- Servis Talebi Dropdown (Mobile) -->
+        <div>
+          <button @click="showMobileServicesDropdown = !showMobileServicesDropdown" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 w-full text-left px-3 py-2 rounded-md text-base font-medium flex items-center justify-between">
+            Servis Talebi
+            <svg :class="{'rotate-180': showMobileServicesDropdown}" class="h-5 w-5 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div v-show="showMobileServicesDropdown" class="pl-6 space-y-1">
+            <Link :href="route('service-request')" @click="closeMobileMenu" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-sm font-medium">
+              Talep Oluştur
+            </Link>
+            <Link :href="route('service-request.query')" @click="closeMobileMenu" class="text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-sm font-medium">
+              Talep Sorgula
+            </Link>
+          </div>
+        </div>
         <Link :href="route('internet-speed-test')" @click="closeMobileMenu" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 block px-3 py-2 rounded-md text-base font-medium">
           Hız Testi
         </Link>
@@ -131,6 +161,8 @@ import { ref } from 'vue';
 
 // Mobile menu state
 const mobileMenuOpen = ref(false);
+const showServicesDropdown = ref(false);
+const showMobileServicesDropdown = ref(false);
 
 // Toggle mobile menu
 const toggleMobileMenu = () => {

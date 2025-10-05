@@ -85,7 +85,7 @@
         </div>
       </div>
 
-      <!-- Continue Button (Desktop only) -->
+      <!-- Continue Button (Desktop only) - Kartların hemen altında -->
       <Transition
         enter-active-class="transition-opacity duration-300"
         enter-from-class="opacity-0"
@@ -94,7 +94,7 @@
         leave-from-class="opacity-100"
         leave-to-class="opacity-0"
       >
-        <div v-if="selected && selectedOption" class="hidden md:flex justify-center">
+        <div v-if="selected && selectedOption" class="hidden md:flex justify-center mt-8">
           <button
             @click="handleContinue"
             class="inline-flex items-center justify-center px-8 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold shadow-xl transition-all duration-300 hover:scale-105"
@@ -103,6 +103,42 @@
           </button>
         </div>
       </Transition>
+
+      <!-- Service Request Query Section (Guest Only) - Devam Et butonunun altında -->
+      <div v-if="!$page.props.auth.user" class="mt-10 md:mt-12">
+        <div class="bg-white/80 dark:bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-8 shadow-lg ring-1 ring-gray-200 dark:ring-white/10">
+          <div class="text-center mb-6">
+            <h2 class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
+              Mevcut Talebinizi Sorgulayın
+            </h2>
+            <p class="text-sm text-gray-600 dark:text-gray-300">
+              Daha önce oluşturduğunuz talep numaranızı girerek durumunu kontrol edebilirsiniz
+            </p>
+          </div>
+          <form @submit.prevent="queryServiceRequest" class="max-w-md mx-auto">
+            <div class="flex flex-col sm:flex-row gap-3">
+              <div class="flex-1">
+                <input
+                  v-model="queryNumber"
+                  type="text"
+                  placeholder="Talep numaranızı girin (örn: FT-2024-001)"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg whitespace-nowrap"
+              >
+                Sorgula
+              </button>
+            </div>
+            <p v-if="queryError" class="mt-3 text-sm text-red-500 dark:text-red-400 text-center">
+              {{ queryError }}
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -153,6 +189,8 @@ const services = [
 const selected = ref(null);
 const selectedOption = ref(null);
 const cardsSection = ref(null);
+const queryNumber = ref('');
+const queryError = ref('');
 
 function selectService(key) {
   selected.value = key;
@@ -183,6 +221,18 @@ function handleContinue() {
       option: selectedOption.value
     }));
   }
+}
+
+function queryServiceRequest() {
+  queryError.value = '';
+  
+  if (!queryNumber.value.trim()) {
+    queryError.value = 'Lütfen talep numaranızı girin';
+    return;
+  }
+  
+  // Redirect to query page with request number
+  router.visit(route('service-request.query', { request_number: queryNumber.value.trim() }));
 }
 </script>
 
