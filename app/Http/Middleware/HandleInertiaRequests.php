@@ -59,6 +59,35 @@ class HandleInertiaRequests extends Middleware
                 'success' => $request->session()->get('success'),
                 'error' => $request->session()->get('error'),
             ],
+            'seo' => $this->getSeoData($request),
         ];
+    }
+
+    /**
+     * Get SEO data for current route
+     * 
+     * Priority: Controller > Config > Default
+     */
+    protected function getSeoData(Request $request): array
+    {
+        $routeName = $request->route()?->getName();
+        
+        // Config'den route'a özel SEO bilgisi al
+        $seoConfig = config("seo.routes.{$routeName}") ?? config('seo.default');
+        
+        // OG image ve canonical URL'i tam path yap
+        $ogImage = $seoConfig['og_image'] ?? config('seo.default.og_image');
+        $ogImage = str_starts_with($ogImage, 'http') ? $ogImage : asset($ogImage);
+        
+        return [
+            'title' => $seoConfig['title'] ?? config('seo.default.title'),
+            'description' => $seoConfig['description'] ?? config('seo.default.description'),
+            'keywords' => $seoConfig['keywords'] ?? config('seo.default.keywords'),
+            'og_image' => $ogImage,
+            'canonical' => url()->current(),
+        ];
+        
+        // NOT: Controller'dan manuel SEO gönderilirse (props['seo']),
+        // o otomatik olarak bu değerleri override eder (merge ediliyor).
     }
 }

@@ -4,6 +4,41 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        {{-- SEO Meta Tags --}}
+        @php
+            // Inertia page data'sını decode et
+            $pageData = json_decode(json_encode($page ?? []), true);
+            $seo = $pageData['props']['seo'] ?? null;
+        @endphp
+
+        @if($seo)
+            <meta name="description" content="{{ $seo['description'] }}">
+            <meta name="keywords" content="{{ $seo['keywords'] }}">
+            
+            {{-- Open Graph / Facebook --}}
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="{{ $seo['canonical'] }}">
+            <meta property="og:title" content="{{ $seo['title'] }}">
+            <meta property="og:description" content="{{ $seo['description'] }}">
+            <meta property="og:image" content="{{ $seo['og_image'] }}">
+            <meta property="og:locale" content="tr_TR">
+            
+            {{-- Twitter --}}
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:url" content="{{ $seo['canonical'] }}">
+            <meta name="twitter:title" content="{{ $seo['title'] }}">
+            <meta name="twitter:description" content="{{ $seo['description'] }}">
+            <meta name="twitter:image" content="{{ $seo['og_image'] }}">
+            
+            {{-- Canonical --}}
+            <link rel="canonical" href="{{ $seo['canonical'] }}">
+        @else
+            {{-- Default meta tags --}}
+            <meta name="description" content="Fast Teknik - İzmir'de profesyonel teknik servis hizmetleri">
+            <meta name="keywords" content="teknik servis, izmir, fast teknik">
+            <link rel="canonical" href="{{ url()->current() }}">
+        @endif
+        
         {{-- Favicon --}}
         <link rel="icon" type="image/png" href="/fast-favicon/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/fast-favicon/favicon.svg" />
@@ -39,6 +74,7 @@
 
         <title inertia>{{ config('app.name', 'Fast Teknik') }}</title>
 
+       
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
