@@ -216,7 +216,7 @@ watch(
 
 // WhatsApp link oluştur
 const getWhatsAppLink = () => {
-  const phone = '905469118061'; // Türkiye için 90 eklendi
+  const phone = '905411191089'; // Türkiye için 90 eklendi
   const message = `Merhabalar Fast Teknik, ${serviceRequest.value?.request_number} numaralı servis talebim ile ilgili bilgi almak istiyorum.`;
   return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 };

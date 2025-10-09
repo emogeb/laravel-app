@@ -53,7 +53,7 @@ withDefaults(defineProps<Props>(), {
             <h3 class="text-lg sm:text-xl font-semibold mb-4">İletişim</h3>
             <ul class="space-y-2 text-gray-300 text-sm sm:text-base">
               <li>Adres: İzmir, Türkiye</li>
-              <li>Telefon: +90 555 123 4567</li>
+              <li>Telefon: +90 541 119 10 89</li>
               <li>Email: info@fastteknik.com</li>
             </ul>
           </div>
