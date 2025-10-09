@@ -4,11 +4,12 @@ import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 import tailwindcss from '@tailwindcss/vite';
 
-export default defineConfig({
+export default defineConfig(({ command, isSsrBuild }) => ({
     plugins: [
         vue(),
         laravel({
             input: ['resources/css/app.css', 'resources/js/app.ts'],
+            ssr: 'resources/js/ssr.ts',
             refresh: true,
         }),
         tailwindcss(),
@@ -29,14 +30,18 @@ export default defineConfig({
     },
     build: {
         target: 'esnext',
-        outDir: 'public/build',
+        outDir: isSsrBuild ? 'bootstrap/ssr' : 'public/build',
         assetsDir: 'assets',
-        emptyOutDir: true,
-        manifest: true,
-        rollupOptions: {
+        emptyOutDir: isSsrBuild ? false : true,
+        manifest: !isSsrBuild,
+        rollupOptions: isSsrBuild ? undefined : {
             input: {
                 app: resolve(__dirname, 'resources/js/app.ts'),
             },
         },
     },
-});
+    // SSR Build Configuration
+    ssr: {
+        noExternal: ['@inertiajs/vue3', 'ziggy-js'],
+    },
+}));

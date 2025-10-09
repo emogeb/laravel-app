@@ -51,7 +51,7 @@ const updatePassword = () => {
 </script>
 
 <template>
-    <AppLayout :breadcrumbs="breadcrumbItems">
+    <AppLayout :breadcrumbs="breadcrumbItems" :services="[]">
         <Head title="Password settings" />
 
         <SettingsLayout>
