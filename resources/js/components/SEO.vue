@@ -49,7 +49,11 @@ const props = defineProps({
 });
 
 const page = usePage();
-const baseUrl = computed(() => page.props.appUrl || window.location.origin);
-const canonicalUrl = computed(() => props.url || `${baseUrl.value}${window.location.pathname}`);
+const baseUrl = computed(() => page.props.appUrl || (typeof window !== 'undefined' ? window.location.origin : ''));
+const canonicalUrl = computed(() => {
+  if (props.url) return props.url;
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : page.props.ziggy?.location || '/';
+  return `${baseUrl.value}${pathname}`;
+});
 const ogImage = computed(() => props.image.startsWith('http') ? props.image : `${baseUrl.value}${props.image}`);
 </script> 

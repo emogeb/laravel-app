@@ -117,7 +117,7 @@
         @endproduction
 
         @routes
-        @vite(['resources/css/app.css', 'resources/js/app.ts'])
+        @vite(['resources/js/app.ts'])
         @inertiaHead
 
         {{-- Combined Organization + LocalBusiness JSON-LD --}}

@@ -1,15 +1,15 @@
 {
     "private": true,
     "type": "module",
-    "scripts": {
-        "build": "vite build",
-        "build:ssr": "vite build && vite build --ssr",
-        "dev": "vite",
-        "ssr": "node bootstrap/ssr/ssr.js",
-        "format": "prettier --write resources/",
-        "format:check": "prettier --check resources/",
-        "lint": "eslint . --fix"
-    },
+  "scripts": {
+    "build": "vite build && cp public/build/.vite/manifest.json public/build/manifest.json",
+    "build:ssr": "npm run build && vite build --ssr",
+    "dev": "vite",
+    "ssr": "node bootstrap/ssr/ssr.js",
+    "format": "prettier --write resources/",
+    "format:check": "prettier --check resources/",
+    "lint": "eslint . --fix"
+  },
     "devDependencies": {
         "@eslint/js": "^9.19.0",
         "@types/aos": "^3.0.7",
@@ -29,9 +29,11 @@
     },
     "dependencies": {
         "@heroicons/vue": "^2.2.0",
-        "@inertiajs/vue3": "^2.0.0",
+        "@inertiajs/server": "^0.1.0",
+        "@inertiajs/vue3": "^2.2.8",
         "@tailwindcss/vite": "^4.1.1",
         "@vitejs/plugin-vue": "^5.2.1",
+        "@vue/server-renderer": "^3.5.13",
         "@vueuse/core": "^12.8.2",
         "@vueuse/head": "^2.0.0",
         "@vueuse/motion": "^3.0.3",

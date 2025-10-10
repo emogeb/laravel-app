@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         // Share global data with all Inertia pages
         Inertia::share([
             'appName' => config('app.name'),
+            'appUrl' => config('app.url'),
         ]);
     }
 }
