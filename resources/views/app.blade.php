@@ -46,6 +46,16 @@
         <link rel="apple-touch-icon" sizes="180x180" href="/fast-favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
+        {{-- Google Ads Conversion Tracking --}}
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17624637217"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'AW-17624637217');
+        </script>
+
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
             (function() {
@@ -121,7 +131,7 @@
         @inertiaHead
 
         {{-- Combined Organization + LocalBusiness JSON-LD --}}
-        <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Fast Teknik","url":"{{ config('app.url') }}","logo":"{{ config('app.url') }}/images/logo.png","description":"İzmir'de profesyonel teknik servis hizmetleri","address":{"@type":"PostalAddress","addressLocality":"İzmir","addressCountry":"TR"},"sameAs":["https://www.instagram.com/fastteknik"],"contactPoint":{"@type":"ContactPoint","telephone":"+90-546-911-8061","contactType":"customer service","areaServed":"TR","availableLanguage":"Turkish"},"priceRange":"$$"},{"@type":"LocalBusiness","name":"Fast Teknik","image":"{{ config('app.url') }}/images/logo.png","@id":"{{ config('app.url') }}","url":"{{ config('app.url') }}","telephone":"+90-546-911-8061","address":{"@type":"PostalAddress","streetAddress":"İzmir","addressLocality":"İzmir","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":38.4237,"longitude":27.1428},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"18:00"},"priceRange":"$$"}]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Fast Teknik","url":"{{ config('app.url') }}","logo":"{{ config('app.url') }}/images/logo.png","description":"İzmir'de profesyonel teknik servis hizmetleri","address":{"@type":"PostalAddress","addressLocality":"İzmir","addressCountry":"TR"},"sameAs":["https://www.instagram.com/fastteknik"],"contactPoint":{"@type":"ContactPoint","telephone":"+90-541-119-10-89","contactType":"customer service","areaServed":"TR","availableLanguage":"Turkish"},"priceRange":"$$"},{"@type":"LocalBusiness","name":"Fast Teknik","image":"{{ config('app.url') }}/images/logo.png","@id":"{{ config('app.url') }}","url":"{{ config('app.url') }}","telephone":"+90-541-119-10-89","address":{"@type":"PostalAddress","streetAddress":"İzmir","addressLocality":"İzmir","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":38.4237,"longitude":27.1428},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"18:00"},"priceRange":"$$"}]}</script>
 
         {{-- İnternet Hız Testi Sayfası İçin JSON-LD --}}
         @if(request()->routeIs('internet-speed-test'))
