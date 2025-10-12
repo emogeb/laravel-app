@@ -158,6 +158,10 @@ const submit = () => {
   
   form.post(route('service-requests.store'), {
     onSuccess: () => {
+      // Google Ads conversion tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', {'send_to': 'AW-17624637217/9m-NCIuMu6obEKG-itRB'});
+      }
       form.reset();
       alert('Talebiniz başarıyla alındı. En kısa sürede sizinle iletişime geçeceğiz.');
     },

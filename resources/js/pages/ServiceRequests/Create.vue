@@ -795,6 +795,10 @@ const copyRequestNumber = async () => {
 const handleSubmit = () => {
   form.post(route('service-requests.store'), {
     onSuccess: () => {
+      // Google Ads conversion tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'conversion', {'send_to': 'AW-17624637217/9m-NCIuMu6obEKG-itRB'});
+      }
       form.reset();
       // Modal will be shown by the watcher when flash message is received
     },
