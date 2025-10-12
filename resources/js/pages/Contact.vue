@@ -22,8 +22,10 @@ const submit = () => {
     form.post(route('contact.send'), {
         onSuccess: () => {
             // Google Ads conversion tracking
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'conversion', {'send_to': 'AW-17624637217/9m-NCIuMu6obEKG-itRB'});
+            if (window.gtag) {
+                window.gtag('event', 'conversion', {
+                    'send_to': 'AW-17624637217/9m-NCIuMu6obEKG-itRB'
+                });
             }
             form.reset();
             alert('Mesajınız başarıyla gönderildi!');

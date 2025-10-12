@@ -46,16 +46,6 @@
         <link rel="apple-touch-icon" sizes="180x180" href="/fast-favicon/apple-touch-icon.png" />
         <link rel="manifest" href="/site.webmanifest" />
 
-        {{-- Google Ads Conversion Tracking --}}
-        <!-- Google tag (gtag.js) -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17624637217"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'AW-17624637217');
-        </script>
-
         {{-- Inline script to detect system dark mode preference and apply it immediately --}}
         <script>
             (function() {
@@ -111,18 +101,23 @@
         <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
         <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
-        {{-- Google Analytics 4 (GA4) --}}
+        {{-- Google Tag (gtag.js) - Tek yükleme, çoklu config --}}
         @production
-            <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DW9PGYTDR"></script>
+            <!-- Google tag (gtag.js) – tek kez yüklenir -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17624637217"></script>
             <script>
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
+
+                // Google Analytics 4 (GA4)
                 gtag('config', 'G-2DW9PGYTDR', {
                     'anonymize_ip': true,
                     'cookie_flags': 'SameSite=None;Secure'
                 });
+
+                // Google Ads (global config)
+                gtag('config', 'AW-17624637217');
             </script>
         @endproduction
 
