@@ -20,7 +20,7 @@ withDefaults(defineProps<Props>(), {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div class="flex justify-between items-center">
           <Link :href="route('home')" class="text-2xl font-bold text-gray-900 dark:text-white">
-            Fast Teknik
+            Türk Teknik
           </Link>
           <nav class="space-x-4">
             <Link :href="route('services.index')" class="text-gray-600 hover:text-orange-600 dark:text-gray-300 dark:hover:text-orange-400">
@@ -44,22 +44,22 @@ withDefaults(defineProps<Props>(), {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12 max-w-4xl mx-auto">
           <div class="text-center sm:text-left">
-            <h3 class="text-lg sm:text-xl font-semibold mb-4">Fast Teknik</h3>
+            <h3 class="text-lg sm:text-xl font-semibold mb-4">Türk Teknik</h3>
             <p class="text-gray-300 text-sm sm:text-base">
               İzmir'in güvenilir teknik servis çözümleri.
             </p>
           </div>
           <div class="text-center sm:text-left">
             <h3 class="text-lg sm:text-xl font-semibold mb-4">İletişim</h3>
-            <ul class="space-y-2 text-gray-300 text-sm sm:text-base">
-              <li>Adres: İzmir, Türkiye</li>
-              <li>Telefon: +90 541 119 10 89</li>
-              <li>Email: info@fastteknik.com</li>
-            </ul>
+          <ul class="space-y-2 text-gray-300 text-sm sm:text-base">
+            <li>Adres: İzmir, Türkiye</li>
+            <li>Telefon: +90 546 911 80 61</li>
+            <li>Email: info@turkteknik.com</li>
+          </ul>
           </div>
         </div>
         <div class="mt-8 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
-          <p>&copy; {{ new Date().getFullYear() }} Fast Teknik. Tüm hakları saklıdır.</p>
+          <p>&copy; {{ new Date().getFullYear() }} Türk Teknik. Tüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>

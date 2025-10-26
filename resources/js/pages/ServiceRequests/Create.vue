@@ -5,8 +5,8 @@
     
     <TopBar />
     <SEO
-      title="Hizmet Talebi Formu | Fast Teknik"
-      description="Fast Teknik hizmet talebi oluşturma formu. Bilgilerinizi girin ve hizmet talebinizi kolayca oluşturun."
+      title="Hizmet Talebi Formu | Türk Teknik"
+      description="Türk Teknik hizmet talebi oluşturma formu. Bilgilerinizi girin ve hizmet talebinizi kolayca oluşturun."
     />
     
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12 relative">

@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
     <TopBar />
     <SEO
-      :title="service.name + ' Hizmet Talebi | Fast Teknik'"
+      :title="service.name + ' Hizmet Talebi | Türk Teknik'"
       :description="service.name + ' hizmeti için hızlı ve güvenilir teknik servis talebi oluşturun.'"
       :keywords="service.keywords"
       :url="'https://fastteknik.com/hizmetler/' + service.slug + '/talep'"
@@ -94,11 +94,11 @@
           <div class="bg-white rounded-lg shadow-lg p-6">
             <h3 class="text-xl font-semibold mb-4">İletişim</h3>
             <div class="space-y-2 text-gray-600">
-              <p><i class="fas fa-phone mr-2"></i> +90 541 119 10 89</p>
-              <p><i class="fas fa-envelope mr-2"></i> info@fastteknik.com</p>
+              <p><i class="fas fa-phone mr-2"></i> +90 546 911 80 61</p>
+              <p><i class="fas fa-envelope mr-2"></i> info@turkteknik.com</p>
               <p><i class="fas fa-map-marker-alt mr-2"></i> İzmir, Türkiye</p>
               <a 
-                href="https://wa.me/905411191089?text=Merhaba, {{ service.name }} hizmeti hakkında bilgi almak istiyorum."
+                href="https://wa.me/905469118061?text=Merhaba, {{ service.name }} hizmeti hakkında bilgi almak istiyorum."
                 target="_blank"
                 class="flex items-center text-green-600 hover:text-green-700 mt-4"
               >

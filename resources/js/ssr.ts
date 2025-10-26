@@ -8,23 +8,23 @@ import { route as ziggyRoute } from 'ziggy-js';
 import { createHead } from '@vueuse/head';
 import { MotionPlugin } from '@vueuse/motion';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Fast Teknik';
+const appName = import.meta.env.VITE_APP_NAME || 'Türk Teknik';
 
 createServer((page) =>
     createInertiaApp({
         page,
         render: renderToString,
         title: (title) => {
-            // If title already contains "Fast Teknik", don't append again
-            if (title && title.includes('Fast Teknik')) {
+            // If title already contains "Türk Teknik", don't append again
+            if (title && title.includes('Türk Teknik')) {
                 return title;
             }
             // If title exists, append brand
             if (title) {
-                return `${title} | Fast Teknik`;
+                return `${title} | Türk Teknik`;
             }
             // Default fallback
-            return 'Fast Teknik | İzmir Teknik Servis';
+            return 'Türk Teknik | İzmir Teknik Servis';
         },
         resolve: (name) => {
             const pages = import.meta.glob<DefineComponent>('./pages/**/*.vue');

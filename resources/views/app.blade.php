@@ -34,7 +34,7 @@
             <link rel="canonical" href="{{ $seo['canonical'] }}">
         @else
             {{-- Default meta tags --}}
-            <meta name="description" content="Fast Teknik - İzmir'de profesyonel teknik servis hizmetleri">
+            <meta name="description" content="Türk Teknik - İzmir'de profesyonel teknik servis hizmetleri">
             <meta name="keywords" content="teknik servis, izmir, fast teknik">
             <link rel="canonical" href="{{ url()->current() }}">
         @endif
@@ -72,7 +72,7 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Fast Teknik') }}</title>
+        <title inertia>{{ config('app.name', 'Türk Teknik') }}</title>
 
        
         <link rel="icon" href="/favicon.ico" sizes="any">
@@ -126,11 +126,11 @@
         @inertiaHead
 
         {{-- Combined Organization + LocalBusiness JSON-LD --}}
-        <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Fast Teknik","url":"{{ config('app.url') }}","logo":"{{ config('app.url') }}/images/logo.png","description":"İzmir'de profesyonel teknik servis hizmetleri","address":{"@type":"PostalAddress","addressLocality":"İzmir","addressCountry":"TR"},"sameAs":["https://www.instagram.com/fastteknik"],"contactPoint":{"@type":"ContactPoint","telephone":"+90-541-119-10-89","contactType":"customer service","areaServed":"TR","availableLanguage":"Turkish"},"priceRange":"$$"},{"@type":"LocalBusiness","name":"Fast Teknik","image":"{{ config('app.url') }}/images/logo.png","@id":"{{ config('app.url') }}","url":"{{ config('app.url') }}","telephone":"+90-541-119-10-89","address":{"@type":"PostalAddress","streetAddress":"İzmir","addressLocality":"İzmir","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":38.4237,"longitude":27.1428},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"18:00"},"priceRange":"$$"}]}</script>
+        <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Türk Teknik","url":"{{ config('app.url') }}","logo":"{{ config('app.url') }}/images/logo.png","description":"İzmir'de profesyonel teknik servis hizmetleri","address":{"@type":"PostalAddress","addressLocality":"İzmir","addressCountry":"TR"},"sameAs":["https://www.instagram.com/turkteknik"],"contactPoint":{"@type":"ContactPoint","telephone":"+90-546-911-80-61","contactType":"customer service","areaServed":"TR","availableLanguage":"Turkish"},"priceRange":"$$"},{"@type":"LocalBusiness","name":"Türk Teknik","image":"{{ config('app.url') }}/images/logo.png","@id":"{{ config('app.url') }}","url":"{{ config('app.url') }}","telephone":"+90-546-911-80-61","address":{"@type":"PostalAddress","streetAddress":"İzmir","addressLocality":"İzmir","addressCountry":"TR"},"geo":{"@type":"GeoCoordinates","latitude":38.4237,"longitude":27.1428},"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"18:00"},"priceRange":"$$"}]}</script>
 
         {{-- İnternet Hız Testi Sayfası İçin JSON-LD --}}
         @if(request()->routeIs('internet-speed-test'))
-            <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"İnternet Hız Testi","url":"{{ route('internet-speed-test') }}","description":"İzmir'de ücretsiz internet hız testi yapın","publisher":{"@type":"Organization","name":"Fast Teknik","logo":{"@type":"ImageObject","url":"{{ config('app.url') }}/images/logo.png"}},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"{{ config('app.url') }}"},{"@type":"ListItem","position":2,"name":"İnternet Hız Testi","item":"{{ route('internet-speed-test') }}"}]}}</script>
+            <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"İnternet Hız Testi","url":"{{ route('internet-speed-test') }}","description":"İzmir'de ücretsiz internet hız testi yapın","publisher":{"@type":"Organization","name":"Türk Teknik","logo":{"@type":"ImageObject","url":"{{ config('app.url') }}/images/logo.png"}},"breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"{{ config('app.url') }}"},{"@type":"ListItem","position":2,"name":"İnternet Hız Testi","item":"{{ route('internet-speed-test') }}"}]}}</script>
         @endif
 
     </head>

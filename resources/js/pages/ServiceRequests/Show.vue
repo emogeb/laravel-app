@@ -1,8 +1,8 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-blue-100 to-blue-200 dark:from-gray-800 dark:to-gray-900 py-10 px-4 sm:px-6 lg:px-8">
     <SEO
-      :title="`Servis Talebi #${serviceRequest.request_number} | Fast Teknik`"
-      description="Fast Teknik servis talebi detayları ve durum takibi."
+      :title="`Servis Talebi #${serviceRequest.request_number} | Türk Teknik`"
+      description="Türk Teknik servis talebi detayları ve durum takibi."
     />
     <div class="max-w-3xl mx-auto">
       <div class="bg-white rounded-lg shadow-xl p-6 dark:bg-gray-700 dark:bg-opacity-80">

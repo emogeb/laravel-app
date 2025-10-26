@@ -5,8 +5,8 @@
     
     <TopBar />
     <SEO
-      title="Servis Talebi Oluştur | Fast Teknik"
-      description="Fast Teknik servis talebi oluşturun. Kamera sistemleri, internet hizmetleri ve uydu sistemleri için hızlı ve kolay talep formu."
+      title="Servis Talebi Oluştur | Türk Teknik"
+      description="Türk Teknik servis talebi oluşturun. Kamera sistemleri, internet hizmetleri ve uydu sistemleri için hızlı ve kolay talep formu."
       keywords="servis talebi, teknik destek, hizmet talebi"
     />
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 space-y-10 md:space-y-14 relative">

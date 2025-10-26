@@ -13,7 +13,7 @@ npm run build:ssr
 
 # Stop existing PM2 process
 echo "⏸️  Stopping existing SSR process..."
-pm2 stop fastteknik-ssr 2>/dev/null || true
+pm2 stop turkteknik-ssr 2>/dev/null || true
 
 # Start SSR with PM2
 echo "▶️  Starting SSR server..."
@@ -26,5 +26,5 @@ pm2 save
 # Show status
 echo "✅ Deployment complete!"
 pm2 status
-pm2 logs fastteknik-ssr --lines 20
+pm2 logs turkteknik-ssr --lines 20
 

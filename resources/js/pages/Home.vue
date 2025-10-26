@@ -2,8 +2,8 @@
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
     <TopBar />
     <SEO
-      title="Fast Teknik | İzmir'in Güvenilir Teknik Servis Çözümleri"
-      description="Fast Teknik, İzmir'de profesyonel teknik servis hizmetleri sunmaktadır. Kamera sistemleri, internet altyapısı, uydu sistemleri ve daha fazlası için güvenilir servis çözümleri."
+      title="Türk Teknik | İzmir'in Güvenilir Teknik Servis Çözümleri"
+      description="Türk Teknik, İzmir'de profesyonel teknik servis hizmetleri sunmaktadır. Kamera sistemleri, internet altyapısı, uydu sistemleri ve daha fazlası için güvenilir servis çözümleri."
       keywords="teknik servis, izmir teknik servis, kamera sistemleri, internet servisi, uydu sistemleri"
       url="https://fastteknik.com"
     />
@@ -37,10 +37,10 @@
                 </div>
               </div>
               <div class="mt-6 sm:mt-8 flex items-center justify-center lg:justify-start">
-                <a href="tel:+905411191089" class="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold text-lg">
-                  <i class="fas fa-phone text-xl"></i>
-                  <span>0541 119 10 89</span>
-                </a>
+        <a href="tel:+905469118061" class="flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-semibold text-lg">
+          <i class="fas fa-phone text-xl"></i>
+          <span>0546 911 80 61</span>
+        </a>
               </div>
             </div>
           </main>
@@ -234,7 +234,7 @@
     <div class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3" style="will-change: transform;">
       <!-- WhatsApp Button -->
       <a
-        href="https://wa.me/905411191089?text=Merhaba! Fast Teknik hizmetleri hakkında bilgi almak istiyorum."
+        href="https://wa.me/905469118061?text=Merhaba! Türk Teknik hizmetleri hakkında bilgi almak istiyorum."
         target="_blank"
         rel="noopener noreferrer"
         class="
@@ -256,7 +256,7 @@
 
       <!-- Phone Button -->
       <a
-        href="tel:+905411191089"
+        href="tel:+905469118061"
         class="
           bg-blue-600 hover:bg-blue-700 
           text-white 

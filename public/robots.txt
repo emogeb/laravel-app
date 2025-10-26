@@ -1,4 +1,4 @@
-# Fast Teknik - https://fastteknik.com
+# Fast Teknik - https://turkteknik.com
 # Robots.txt - Simplified and focused
 
 # Default: Allow all bots
@@ -32,4 +32,4 @@ User-agent: DotBot
 Disallow: /
 
 # Sitemap
-Sitemap: https://fastteknik.com/sitemap.xml
+Sitemap: https://turkteknik.com/sitemap.xml

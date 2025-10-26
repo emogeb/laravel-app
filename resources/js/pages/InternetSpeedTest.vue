@@ -2,8 +2,8 @@
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
     <TopBar />
     <SEO
-      title="İnternet Hız Testi | Anında Bağlantı Hızınızı Öğrenin - Fast Teknik İzmir"
-      description="İzmir'de internetiniz yavaş mı? Fast Teknik ile anında hız testi yapın. Bağlantı hızınızı ölçün, sonuçları görün ve profesyonel destek alın."
+      title="İnternet Hız Testi | Anında Bağlantı Hızınızı Öğrenin - Türk Teknik İzmir"
+      description="İzmir'de internetiniz yavaş mı? Türk Teknik ile anında hız testi yapın. Bağlantı hızınızı ölçün, sonuçları görün ve profesyonel destek alın."
       keywords="internet hız testi, hız testi, izmir internet, internet bağlantı ölçme, online hız testi, speedtest, speed test"
       url="http://fast-teknik.test.test/internet-hiz-testi"
     />

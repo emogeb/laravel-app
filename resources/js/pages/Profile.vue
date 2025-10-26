@@ -2,7 +2,7 @@
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
     <TopBar />
     <SEO
-      title="Profilim | Fast Teknik İzmir"
+      title="Profilim | Türk Teknik İzmir"
       description="Kullanıcı profil sayfası: Kişisel bilgileriniz ve tamamlanan servis talepleriniz."
       keywords="kullanıcı profili, servis talepleri, fast teknik profil"
       url="http://fast-teknik.test.test/profil"

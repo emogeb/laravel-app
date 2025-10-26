@@ -1,7 +1,7 @@
 module.exports = {
   apps: [
     {
-      name: 'fastteknik-ssr',
+      name: 'turkteknik-ssr',
       script: 'bootstrap/ssr/ssr.js',
       node_args: '--enable-source-maps',
       env: {

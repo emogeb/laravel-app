@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
     <SEO
-      :title="service.name + ' | Fast Teknik'"
+      :title="service.name + ' | Türk Teknik'"
       :description="service.description"
       :keywords="service.keywords"
       :url="'https://fastteknik.com/services/' + service.slug"

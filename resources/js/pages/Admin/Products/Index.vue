@@ -36,7 +36,7 @@
         </table>
       </div>
     </div>
-    <footer class="w-full text-center text-xs text-gray-400 py-2 mt-8 border-t border-gray-200 bg-transparent">© {{ new Date().getFullYear() }} Fast Teknik</footer>
+    <footer class="w-full text-center text-xs text-gray-400 py-2 mt-8 border-t border-gray-200 bg-transparent">© {{ new Date().getFullYear() }} Türk Teknik</footer>
   </div>
 </template>
 

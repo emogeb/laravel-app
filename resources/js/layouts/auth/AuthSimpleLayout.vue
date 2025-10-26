@@ -15,7 +15,7 @@ defineProps<{
                 <div class="flex flex-col items-center gap-4">
                     <Link :href="route('home')" class="flex flex-col items-center gap-2 font-medium">
                         <h1 class="text-4xl font-extrabold tracking-tight text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200">
-                            Fast Teknik
+                            Türk Teknik
                         </h1>
                     </Link>
                     <div class="space-y-2 text-center">

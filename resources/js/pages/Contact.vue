@@ -41,8 +41,8 @@ const submit = () => {
 <template>
     <AppLayout :services="services">
         <SEO
-            title="İletişim | Fast Teknik"
-            description="Fast Teknik ile iletişime geçin. İzmir'de teknik servis hizmetleri için bizimle iletişime geçebilirsiniz."
+            title="İletişim | Türk Teknik"
+            description="Türk Teknik ile iletişime geçin. İzmir'de teknik servis hizmetleri için bizimle iletişime geçebilirsiniz."
         />
 
         <div class="container mx-auto px-4 py-8">

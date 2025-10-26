@@ -12,7 +12,7 @@ class RedirectWww
      * Handle an incoming request.
      *
      * Redirects www subdomain to non-www version for SEO canonical URL.
-     * Example: www.fastteknik.com → fastteknik.com (301 permanent redirect)
+     * Example: www.turkteknik.com → turkteknik.com (301 permanent redirect)
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */

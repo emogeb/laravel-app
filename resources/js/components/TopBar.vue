@@ -5,7 +5,7 @@
         <div class="flex items-center">
           <!-- Logo veya Site Adı -->
           <Link :href="route('home')" class="flex-shrink-0 text-xl font-bold text-gray-900 dark:text-white">
-            Fast Teknik
+            Türk Teknik
           </Link>
           <!-- Ana Navigasyon Linkleri - Desktop -->
           <div class="hidden md:flex ml-10 space-x-4 items-center">

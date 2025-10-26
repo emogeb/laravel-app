@@ -5,8 +5,8 @@
     
     <TopBar />
     <SEO
-      title="Fast Teknik | Hizmetlerimiz"
-      description="Fast Teknik'in sunduğu tüm teknik servis hizmetleri. Kamera sistemleri, internet hizmetleri ve uydu sistemleri için profesyonel çözümler."
+      title="Türk Teknik | Hizmetlerimiz"
+      description="Türk Teknik'in sunduğu tüm teknik servis hizmetleri. Kamera sistemleri, internet hizmetleri ve uydu sistemleri için profesyonel çözümler."
       keywords="teknik servis, kamera kurulumu, internet hizmetleri, uydu sistemleri, çanak anten"
       url="https://fastteknik.com/services"
     />

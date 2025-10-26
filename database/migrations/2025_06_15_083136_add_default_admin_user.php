@@ -15,7 +15,7 @@ return new class extends Migration
     {
         DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'admin@fastteknik.test',
+            'email' => 'admin@turkteknik.test',
             'password' =>  bcrypt('Emir1977'), // Şifreni değiştir!
             'is_admin' => true,
             'email_verified_at' => now(),
@@ -26,6 +26,6 @@ return new class extends Migration
     
     public function down(): void
     {
-        DB::table('users')->where('email', 'admin@fastteknik.test')->delete();
+        DB::table('users')->where('email', 'admin@turkteknik.test')->delete();
     }
 };
