@@ -8,66 +8,61 @@ import { route as ziggyRoute } from 'ziggy-js';
 import { createHead } from '@vueuse/head';
 import { MotionPlugin } from '@vueuse/motion';
 
+// Vue global property tip genişletmesi
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    route: typeof ziggyRoute;
+  }
+}
+
 const appName = import.meta.env.VITE_APP_NAME || 'Türk Teknik';
 
 createServer((page) =>
-    createInertiaApp({
-        page,
-        render: renderToString,
-        title: (title) => {
-            // If title already contains "Türk Teknik", don't append again
-            if (title && title.includes('Türk Teknik')) {
-                return title;
-            }
-            // If title exists, append brand
-            if (title) {
-                return `${title} | Türk Teknik`;
-            }
-            // Default fallback
-            return 'Türk Teknik | İzmir Teknik Servis';
-        },
-        resolve: (name) => {
-            const pages = import.meta.glob<DefineComponent>('./pages/**/*.vue');
-            const pagePath = `./pages/${name}.vue`;
+  createInertiaApp({
+    page,
+    render: renderToString,
+    title: (title) => {
+      if (title && title.includes('Türk Teknik')) return title;
+      if (title) return `${title} | Türk Teknik`;
+      return `${appName} | İzmir Teknik Servis`;
+    },
+    resolve: async (name) => {
+      // Modül tipi: { default: DefineComponent }
+      const pages = import.meta.glob<{ default: DefineComponent }>('./pages/**/*.vue');
+      const pagePath = `./pages/${name}.vue`;
 
-            // Custom resolution for service pages
-            if (name === 'services.camera') {
-                return resolvePageComponent('./pages/CameraService.vue', pages);
-            } else if (name === 'services.internet') {
-                return resolvePageComponent('./pages/InternetService.vue', pages);
-            } else if (name === 'services.satellite') {
-                return resolvePageComponent('./pages/SatelliteService.vue', pages);
-            }
+      if (name === 'services.camera') {
+        return resolvePageComponent('./pages/CameraService.vue', pages);
+      } else if (name === 'services.internet') {
+        return resolvePageComponent('./pages/InternetService.vue', pages);
+      } else if (name === 'services.satellite') {
+        return resolvePageComponent('./pages/SatelliteService.vue', pages);
+      }
 
-            // Default resolution for other pages
-            return resolvePageComponent(pagePath, pages);
-        },
-        setup({ App, props, plugin }) {
-            const head = createHead();
-            const app = createSSRApp({ render: () => h(App, props) });
+      return resolvePageComponent(pagePath, pages);
+    },
+    setup({ App, props, plugin }) {
+      const head = createHead();
+      const app = createSSRApp({ render: () => h(App, props) });
 
-            // Configure Ziggy for SSR...
-            const ziggyConfig = {
-                ...page.props.ziggy,
-                location: new URL(page.props.ziggy.location),
-            };
+      const ziggy = (page.props as any).ziggy ?? {};
+      const ziggyConfig = {
+        ...ziggy,
+        location: new URL(ziggy.location),
+      } as any;
 
-            // Create route function...
-            const route = (name: string, params?: any, absolute?: boolean) => ziggyRoute(name, params, absolute, ziggyConfig);
+      const route: typeof ziggyRoute = (name?: any, params?: any, absolute?: any) =>
+        ziggyRoute(name as any, params, absolute, ziggyConfig) as any;
 
-            // Make route function available globally...
-            app.config.globalProperties.route = route;
+      // Vue componentlarında this.route erişimi için
+      app.config.globalProperties.route = route;
 
-            // Make route function available globally for SSR...
-            if (typeof window === 'undefined') {
-                global.route = route;
-            }
+      // SSR ortamında global erişim
+      (globalThis as any).route = route;
 
-            app.use(plugin)
-                .use(head)
-                .use(MotionPlugin);
+      app.use(plugin).use(head).use(MotionPlugin);
 
-            return app;
-        },
-    }),
+      return app;
+    },
+  }),
 );

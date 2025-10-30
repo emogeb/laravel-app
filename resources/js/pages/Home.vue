@@ -229,6 +229,7 @@
 
     <!-- Notification -->
     <NotificationCard />
+    
 
     <!-- Fixed Contact Buttons -->
     <div class="fixed bottom-6 right-6 z-50 flex flex-col space-y-3" style="will-change: transform;">
@@ -274,12 +275,15 @@
         <i class="fas fa-phone text-xl group-hover:scale-110 transition-transform duration-300"></i>
       </a>
     </div>
+    <!-- Footer -->
+    <Footer />
   </div>
 </template>
 
 <script setup>
 import { Link, usePage } from '@inertiajs/vue3';
 import SEO from '@/components/SEO.vue';
+import Footer from '@/components/Footer.vue';
 import SpeedTest from './SpeedTest.vue';
 import { ref, watch } from 'vue';
 import TopBar from '@/components/TopBar.vue';
